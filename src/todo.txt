@@ -1,0 +1,817 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+[v1.x TODO]
+( ) update REVISIONS.txt
+( ) update FLARManager.get version
+
+( ) figure out why FLARCamera_Flash3D requires a hack to work properly
+	( ) adjust the 150 value based on screen size; it only works well for 640x480.
+	( ) this is related to the FLARCamera_Away3D issue!  perhaps because flash projection matrix only uses width, as well?
+( ) support Flare3D
+	http://flare3d.com/thread/61-flare3d-flartoolkit-integration-
+( ) fix problems with adaptiveSmoothing getting triggered when it shouldn't.
+	makc's suggestion: "you could do hard threshold based on FLARSquare screen coords"
+( ) support for ID-markers in FLARToolkit
+( ) complete matrix conversion fixes (see below)
+( ) aspect ratios < 4:3 (taller) cause scaling bug in Flash3D.
+	also, 800x480 causes same bug...but 640x360/240/160 does not...
+
+
+[v1.1 TODO]
+( ) document markerMode, patternMode
+	( ) on site
+	(X) in ASDocs
+(X) document activityThreshold
+	(X) reset activityThreshold in flarConfig to default value (delete it)
+(X) switch examples from pv3d to away3d
+(X) adapt smoother (or just stored matrices in FLARManager?) to pay attention to activityThreshold --
+	only smooth with new matrices, not with duplicated matrices caused when activity < threshold.
+(X) wide aspect ratios work well for PV3D but no other framework.  why is this?
+		i think makc has a fix for this, in my email...
+	(X) how should FLARCamera_Away3D.zoom be changed to properly respond to viewport size / makc's fix?
+		makc: use PerspectiveLens
+	(X) i noticed that NyARParam.changeScreenSize only uses width to change scale, not height.
+		fine if aspect ratio is the same as the 640x480 baked into the .dat file... 
+		test by manually setting this._screen_size.w/h to the viewport size in NyARParam.loadARParam;
+		fix...how?  perhaps sim. to makc's fix, using diag instead of just width.
+	(X) how to integrate this fix?  drop into FLARToolkit trunk?
+		need to better understand it, first.
+		looks like it's overwriting the matrix loaded from cameraParams.dat...
+	(X) does the fix work for all engines?
+			yes, and only Away3D has zoom (scale) issue.
+	(X) test other non 4:3 aspect ratios too.
+(X) add makc's FLARParam fixes to FLARToolkit
+(X) single-marker mode per makc's suggestion:
+	http://www.artoolworks.com/community/forum/viewtopic.php?f=25&t=1203
+(X) update to latest version of away3d
+(X) support Alternativa 7.5+
+	public function setMatrix(matrix:FLARTransMatResult):void
+	{
+		var m:Matrix3D = new Matrix3D(Vector.<Number>([
+			matrix.m00,	matrix.m10,		matrix.m20,		0,
+			matrix.m01,	matrix.m11,		matrix.m21,		0,
+			matrix.m02,	matrix.m12,		matrix.m22,		0,
+			matrix.m03,	matrix.m13,		matrix.m23,		1
+		]));
+		m.invert();
+		camera.matrix = m;
+	}
+(X) workaround default params (setAreaRange) flash bug
+(-)	complete flare* projectionMatrix calculations for other 3D frameworks
+	(FlareGeomUtils.as)
+	downgraded due to lack of demand for feature, and lack of Imagination support.
+(-) correctly calculate flare* projectionMatrix values in FlarCamera_Flash3D
+	downgraded due to lack of demand for feature, and lack of Imagination support.
+
+
+( ) fix matrix conversions.
+	found the correct matrix conversions for FTK -> Flash. (FLARToolkitGeomUtils.convertNyARMatrixToFlashMatrix3D)
+	but now that all other libs are receiving flash.geom.Matrix3D instances,
+	changing the FTK -> Flash conversion means all other libs' conversion methods must also be updated.
+	
+	having trouble changing other libs' conversions (starting with PV3D)
+	because it interferes with FLARCamera_X setup.
+	so, next step is to, one by one, roll back lib examples to use ftk's FLARCamera3Ds
+	(to get around projectionMatrix conversion), get lib conversion working correctly,
+	then update FLARToolkitGeomUtils conversions accordingly.
+	
+	NO MORE MIRRORING
+	oh, and this means that XGeomUtils should no longer offer mirroring;
+	mirroring happens in the FTK -> Flash conversion, and should not happen a second time.
+	-- actually, not sure if this is true....maybe?  maybe not.  think on it some more.
+	
+	oi....actually, i think what may be happening here is that mirroring works differently
+	in different contexts / libs.  so, mirroring in flash 3D works, but then using that
+	mirrored matrix in another 3D framework turns the cube inside-out.
+
+( ) patrick o'shaughnessy's pv3d matrix conversion fixes
+	(in /Users/ericsocolofsky/Desktop/lab/flash stuff/_libraries/patchedreality/FLARFramework/trunk/lib/com/transmote/flar/utils/geom/FLARAwayGeomUtils.as)
+
+
+
+[v1.01 TODO]
+(X) update repos
+(X) anything else i mentioned in email to imagination?
+(X) remove flare* .swc files, .lic files
+(X) fix problem with .lic files causing frozen video (no update() calls)
+(X) use FLARToolkitManager as default in all examples/tutorials (per FLARManagerTutorial_2D)
+(X) add documentation page on changing tracking engines, correct marker sets, etc
+(X) ask stefan for links directly to flare*tracker and flare*NFT pages.
+(-) bio of flare*tracker / NFT, for Inside FLARManager: Tracking Engines?
+(-) FlareTracker.removeMarkerDetector?
+
+
+[v1.0 TODO]
+( ) make licensing page on blog, at unique url
+	( ) link to it from quickstart page
+	( ) where else?  all pages?
+(X) transfer /flare branch to /trunk
+(X) change all Inside FLARManager pages to be FLARToolkit / flare - agnostic.
+	(X) Inside FLARManager: Customization
+		(X) check links, specifically to documentation page
+	(X) Inside FLARManager: 2D Marker Tracking
+		(X) check paths to example files in /trunk/
+	(X) Inside FLARManager: Basic Augmented Reality
+		(X) check paths to example files in /trunk/
+	(X) Inside FLARManager: Loading Collada Models
+		( ) check paths to example files in /trunk/
+	(X) FLARManager: Augmented Reality in Flash
+	(X) FLARManager documentation
+		(X) complete documentation of <flareSettings>
+		(X) update documentation for <patterns>
+		(X) ensure that --REQUIRED-- is included everywhere necessary
+		(X) check all links
+			(X) in index
+			(X) in detail
+			(X) some links in detail should link to ASDocs;
+				cannot test until docs are uploaded to transmote.
+		(X) for legibility in editor, remove <br> when only thing on a line.
+	(X) FLARManager donate
+	(X) Inside FLARManager: Getting Started
+	(X) Inside FLARManager: FLARManager Miscellany
+	(X) 'print out marker' sections should have paths to both ID-markers and patterns.
+(X) fix FLARManagerExample_PV3D_Wide
+(X) use FLARManager logo instead of old photo on FLARManager main page.
+(X)	get flare working with other frameworks and/or
+	provide error messages for frameworks that don't yet support pairing with flare,
+	in FlareManager.getProjectionMatrix().
+(X) finish FLARCamera_Flash3D for flare, so that FLARManagerExample_Flash3D works correctly for flare.
+(X) make post with synopsis of all new features,
+	note updated documentation, examples, inside flarmanager pages
+(X) package with flare demo SWCs
+(X) all examples should default to use flare
+(X) quickstart (http://words.transmote.com/wp/flarmanager/inside-flarmanager/getting-started/) should use flare
+(X) update to FLARToolkit 2.5.4
+	(X) commit FLARToolkit changes to libspark:
+		(X) FLARLabeling: made AR_AREA_MAX/MIN public
+		(X) FLARSingle/MultiMarkerDetector: used FLARLabeling constants as defaults to setAreaRange()
+		(X) FLARMultiMarkerDetector: allow thresholding to be skipped
+	(-) remove jp package and just use SWC?
+	(X) re-implement FLARToolkitManager.minimumLabelSize
+	(X) re-implement variable-width marker
+	(X) my changes to thresholding in detectMarkerLite
+		(allowing thresholding to be skipped) need to be replaced
+	(X) re-implement FLARMarker.direction
+	(X) test FLARTransMat.transMatContinue
+(X) change licensing to require open-source licensees to post link to their application source code?
+(X) ensure dispose() works correctly
+(X) cleanup
+	(X) remove crap from SimpleCubes_PV3D
+	(X) remove crap from FLARToolkitGeomUtils
+	(X) remove crap from FLARToolkitManager (focalLength, sceneScaleY, getFLARToolkitProjectionMatrices, calcCameraSize)
+		(X) focalLength, sceneScaleY, getFLARToolkitProjectionMatrices, calcCameraSize
+		(X) getCameraParams
+	(X) remove crap from MarkerPlane
+(X) documentation
+	(X) update REVISIONS.txt
+	(X) rebuild ASDocs (using ASDocr) once ALL CHANGES ARE COMPLETE FOR 1.0
+			almost done; just have to get com.transmote.flar.tracker.FlareManager, FlareNFTManager, and FLARToolkitManager to work.
+			all other classes in com.transmote compile correctly.
+		(X)	FLARToolkitManager is not compiling because of references to FLARToolkit classes;
+				compile docs for just FLARToolkitManager, then look in validation_errors.log to see issue.
+				may have to -exclude classes referenced by FLARToolkitManager.
+		(X) Flare/NFTManager classes don't compile; not clear why yet.
+	
+
+(-) create examples for flare and flareNFT (with pv3d)
+(X) rename project back to just FLARManager (do this when moving back to trunk)
+(X) don't check for secondary camera validation until FLARCameraSource.update gets called at least once,
+	to avoid situation in which FLARManager doesn't start up (for whatever reason), but error message
+	displayed is secondary camera validation error.
+(X) deprecate downsampleRatio, in favor of three discrete value pairs:
+	(X) sourceWidth/Height
+	(X) displayWidth/Height
+	(-) trackerWidth/Height
+	not sure how this will affect non-4:3 aspect ratios...have to investigate.
+(X) enable disabling of thresholdAdapter.  currently hardcoded in FLARManager.onTrackerInited:
+	this.thresholdAdapter = new DrunkHistogramThresholdAdapter();
+(X) try getting native Flash3D working with FLARManagerExample_Flash3D_nutsu
+(-) conditional compilation instead of loading SWCs as SWFs.
+	can maybe place class refs in application code?
+(X) get all examples working.
+	
+[email stefan]
+(X) made changes to ASDocs in FlareTracker and FlareNFT for Flash Builder 4 ASDoc compliance.
+	(changed &nbsp; to &#xA0;, changed some stray < characters to &lt;, closed some tags, fixed some <p> declarations)
+	here is ASDoc allowed html tags: http://help.adobe.com/en_US/flex/using/WSd0ded3821e0d52fe1e63e3d11c2f44bc36-8000.html
+(-) is any FLARManager functionality is redundant with things Flare does internally?
+(X) why does .lic file have to be next to swf?
+	better to place in dataPath than in basePath, that way all external files can live in same place,
+	and maybe don't need stage reference? -- tho it's passed into alchemy.
+(X) have you tried getting Flare to work with native flash 3d?
+	give quick primer on it -- create a rect, can set x,y,z or just transform (Matrix3D) directly.
+	include conversion from flare to flash.geom.Matrix3D (and let him correct it if needed).
+(X) disposal of FlareTracker, FlareNFT
+(X) IFlareTracker - allows for one interface to use either framework easily,
+	since they're already so similar in their usage
+
+[non-critical]
+(X) add GPL readme / license .txt to FLARManager distro
+(X) add FLARManager-only GPL header to all FLARManager files:
+	(X) flar.camera
+	(X) flar.marker
+	(X) flar.pattern
+	(X) flar.source
+	(X) flar.tracker
+		- careful, FTK classes need FTK+FM header
+	(X) flar.utils
+		- careful, FTK classes need FTK+FM header
+	(X) flar
+(X) remove FLARToolkit references from license comments in non-FTK-specific classes
+	(X) flar.camera
+	(X) flar.marker
+	(X) flar.pattern
+	(X) flar.source
+	(X) flar.tracker
+	(X) flar.utils
+	(X) flar
+(X) add ASDoc comments where appropriate
+	(X) flar.camera
+	(X) flar.marker
+	(X) flar.pattern
+	(X) flar.source
+	(X) flar.tracker
+	(X) flar.utils
+	(X) flar
+(X) _trackerManager must check that BitmapData source is instantiated...
+(X) hook into FlareTracker logger for error messages (like external file not found)
+(?) marker type setter (before init)
+(X) move tracker classes into /tracker package; look out for internal access modifiers.
+
+[examples]
+(-) remove stageWidth/Height from all examples, use VIEWPORT_WIDTH/HEIGHT statics instead?
+(X) remove numLoadedPatterns from examples, using code from SimpleCubes_PV3D
+(X) update examples to use new getters for Camera3D creation
+
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+[v0.7 release notes]
+FLARManager.inverted (thx to jim alliban and lee brimelow)
+DrunkHistogramThresholdAdapter implemented as default threshold adapter (thx to matt reynolds)
+adaptive smoothing (and FLARManager.adaptiveSmoothingCenter)
+velocity-related stuff:
+	FLARMarker.velocity
+	.motionSpeed2D
+	.motionDirection2D
+	.rotationSpeedX/Y/Z
+marker extrapolation
+moved config file loading/parsing into FLARManagerConfigLoader
+display mirroring defaults to true
+deprecated adaptive thresholding and smoothing config values removed
+implemented variable width marker borders in FLARToolkit, so patternToBorderRatio now works.
+	only seems to be stable up to about 80/20.
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+[FLARManager_Alchemy]
+keep alchemy and non-alchemy as separate branches --
+will most likely be deprecating non-alchemy eventually, so try to phase it out.
+( ) everything seems to be working except for many many errors thrown from
+	FLContourPickup.getContour_FLARBinRaster().
+	for testing, can get around this by wrapping this._square_detect.detectMarkerCB()
+	call in FLARMultiMarkerDetector.detectMarkerLite in try-catch block.
+	
+	try running FLARTest with a changing image (like FLARLoaderSource),
+	running for more than just one frame, and see if it throws the same error.
+	
+( ) release 0.7 (with and?) without alchemy
+( ) release 1.0 with alchemy
+( ) release version with majority of FLARManager features turned off?
+	like FLARManager lite.  can be used by devs who are afraid of FM overhead,
+	or want to implement their own whateverwhatever.
+(X) FLARMultiMarkerDetector.thresholdedBitmapData needs to be replaced
+( ) test all apps, including FLARProxy.
+
+
+changes to FLARToolkit_Alchemy source for FLARManager support:
+FLARMultiMarkerDetector.getDirection
+FLARMultiMarkerDetector.getSquare
+thresholdedBitmapData.getThresholdedBitmap
+FLARRgbRaster_BitmapData ctor -- pass in BitmapData
+
+
+notes:
+looks like FLARDoubleMatrix34 is being replaced with NYARDoubleMatrix34.
+looks like this is true for a number of datatypes.
+	FLARSquare now extends NYARSquare, whose sqvertex array holds NyARDoublePoint2d instances.
+
+FLARMultiMarkerDetector returns results differently in alchemy branch.
+	internal class (inFLARMultiMD) NyARDetectMarkerResult instead: contains publics for:
+	arcode_id
+	confidence
+	square - NYARSquare, which contains .line and .sqvertex
+	
+	need NyARMatchPattResult for .direction.
+	
+ok.  looks like current setup hides accesses to NyARDetectMarkerResult instances because they're being reused every frame.
+so, they should stay private (internal).
+but, end user really should have access to .direction and .square.  so i'm going to have to add getters.	
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+[v0.7 TODO]
+( ) consider kalman filter for motion extrapolation.
+	http://en.wikipedia.org/wiki/Kalman_filter
+( ) use Matrix3D.decompose() to get values for FLARMarker getters, e.g. vector3D. 
+( ) try using two separate Video objects for 640x480 display, per email from Thomas Mattheussen <thomas.mattheussen@hotmail.com>.
+( ) add 'id' param to <pattern> node in flarConfig.xml
+( ) create setter for FLARMarker.id, to allow adding new patterns on the fly?  prob not necessary, evaluate...
+( ) update documentation for patternToBorderRatio
+( ) document adaptive smoothing
+( ) test FLARTransMat.transMatContinue with new code uploaded by saqoosha
+(X) ensure FLARMatrixSmoother_Average.positionToAngleRatio and flarConfig smoothing are set optimally
+	per anders gunnarsson (http://www.moment77.se/dagbok/alchemy-and-flarmanager/)
+(X) expose FLARMatrixSmoother_Average.positionToAngleRatio in flarConfig.xml
+(X) ratio of angle-to-position smoothing as flarConfig setting,
+(X) away3d lite support
+
+(X) comment on blog:
+	My problem with the “Secondary camera validation failed” has been fixed. It had nothing to do with timeouts, driver, or as Flash reported the cam is busy by another application.
+	The reason was a mistake in the flarConfig.xml file, my mistake. cameraParamsFile was set to the wrong path. Doh! As it seems, if it cannot find FLARCameraParams.dat file then the second camera validation fails. Don’t ask me why.
+
+
+(X) patternToBorderRatio
+(X) setting boolean config values via AS instead of xml does not work; they get overwritten in FMCL.
+(X) profile now that FLARManagerConfigLoader implemented
+(-) try blurring before labeling, then remove blur for pattern detection.
+(X) clean up MarkerOutliner after all testing done
+(X) test loading all params from flarConfig.xml,
+	to ensure FLARManagerConfigLoader is working correctly.
+(X) profile, look for FLARPatterns not getting gc'd.
+(-) IntegralImageThresholdAdapter is running too slowly.  test w/o FLARToolkit...
+(X) add matt reynolds' hybrid threshold adapter (email subject: "another thing...")
+(X) support for inverted markers (per email from jimalliban)
+(X) adaptive smoothing
+	(X) tweak values in FLARMarker.adaptSmoothing to get optimal results
+	(X) update MarkerOutliner to match accessor name changes
+	(X) expose adaptiveSmoothingCenter via FLARConfig.xml
+	(-) expose maxAdaptiveSmoothing via FLARConfig.xml
+	(X) set FLARManager._adaptiveSmoothing = true (by default)
+(X) motion extrapolation
+	redesign -- keep markers alive until they age to removal.
+				set marker locations based on velocity.
+(-) remove stageWidth/Height refs so that FM can be loaded into a parent swf
+
+( ) full-res video
+	setting to 640x480, downsampleRatio=1, sampleBlurring=2 seems to work well;
+	need to benchmark.
+	thinking was that labeling process is where things slow down with full-res,
+	which implies there are somehow more distinct dark areas in the downsampled full-res image.
+	so, blur them a bit more.  but this might have negative impact on marker detection.
+( ) fix bug: width < height causes strangeness in PV3D
+( ) fix z-drift in Flash3D
+	is it possible this is related to FLARCameraParams.dat?  camera FOV maybe?
+	related to lack of FLARCamera3D?
+	(in mail, sent to/from me, subj: away3d lite support and flash 3d)
+( ) get non-4:3 aspect ratios working for Flash3D
+
+(X) email mark with items for coding assistance
+(X) clean up FLARManager by parceling out certain processes to separate classes:
+	(X) config loading and parsing can go into FLARManagerConfigLoader controller class:
+			pass FLARManager instance, most configurations have public setters.
+			for those that don't (e.g. FLARCameraSource within FLARManager), something else...
+			...started FLARManagerConfigLoader, have more props to pass up to FM.
+(-) create new camera_para.dat for built-in iSight
+(-) create new camera_para.dat with no correction
+	(could maybe do this with a longer focal length lens?)
+
+
+[v0.6 release notes]
+revised FLARCameraSource camera selection;
+	added FLARCameraSource.cameraIndex
+	better camera selection
+better 2D support:
+	added FLARMarker.x, .y, .z, .rotation2D, .scale2D, .matrix2D
+	updated FLARManagerTutorial_2D
+	updated FLARManagerExample_2D (MarkerOutliner)
+added FLARMarker.matrix3D, but Flash3D still isn't working well.
+updated FLARManagerExample_Flash3D
+corrected bug (incomplete implementation) in vector3D
+added support for pattern size to flarConfig.xml
+updated away3D to 3.3.4
+updated pv3D to 2.1.920
+minimumLabelSize settable via FLARManager.minimumLabelSize and as attribute to <flarManagerSettings>.
+native mirroring support
+improved stability of some examples/tutorials
+	(Flash3D, Tutorial2D, 3D, Collada: added UPDATED handler and set object.visible = true,
+	 to avoid "since new markers are added..." problem described below.)
+accessor for FLARManager.isActive, instead of de/activate (check if this is v0.6 or earlier)
+FLARManager.dispose
+FLARManager.verbose
+modularized adaptive thresholding, additional options for AT
+changed flarConfig.xml to match modular smoothing and threshold adapter.
+note: changes to adaptive thresholding will break pre-v0.6.  here's how you fix it. 
+
+[v0.6 TODO]
+(X) dispose method for FLARManager (per forum thread from luca volta)
+	(X) complete dispose method for all classes necessary
+	(X) test with profiler
+(X) verbosity: dump settings changes to console.
+	this is started in FLARManager and FLARCameraSource, but not complete.
+(X) modularize adaptive thresholding
+	(X) add to dispose()
+	(X) enable setting via flarConfig:
+		<thresholdAdapter name="DrunkWalkThresholdAdapter">
+			<custom params sent as XML to IThresholdAdapter.init>
+		</thresholdAdapter>
+(X) enable setting smoother via flarConfig (sim to thresholdAdapter)
+(X) commit changes to FLARMultiMarkerDetector
+(X) implement matt reynolds' adaptive thresholding
+(X) implement eugene zatepyakin's adaptive thresholding
+(X) update PV3D.  sounds like collada handling is better in latest version,
+	and those changes may have impacted the way FLARPVGeomUtils converts FLAR matrices....
+(X) better camera handling:
+	choose default camera via Camera.getCamera() (no param).
+	may still want to select USB Video Class Video for OSX.  platform detection:
+	if (flash.system.Capabilities.os.substr(0, 3) == "Mac")
+	monitor camera activityLevel; if it stays at -1,
+	open a dialog that allows selection of the camera.
+	while camera is being selected, FLARManager should deactivate.
+	when camera is selected, FLARManager may need to be reinited (?);
+	regardless, it should be activated.
+	if no cameras found, display dialog that asks for camera to be connected,
+	with selection drop down.
+	dialog and dropdown happens in FLARManagerSetupDialog, which implements IFLARSetupDialog.
+	devs can implement their own IFLARSetupDialog, and set it via FLARManager.setupDialog. 
+(X) if no camera found (catch block in FLARManager.initFlarSource), don't continue FLARManager initialization,
+	and provide way to clear out FLARManager instance for reinitialization after user sets up camera.
+(X) provide way to init FLARManager by passing in an xml object.
+(X) what is minConfidence if not specified?  if it's 0, that's a problem...
+
+(X) implement and streamline/optimize FLARMarker.matrix2D (in SequencAR)
+(X) implement and streamline/optimize FLARMarker.matrix3D (in SequencAR)
+(X) give access to x/y/z as FLARMarker.x/y/z
+(X) finish implementing FLARMarker.scale2D and rotation2D
+(X) update FLARManagerExample_Flash3D to use .matrix3D
+
+(X) zip and post v0.6.
+(X) add bit about marker pattern resolution to tutorials somewheres...
+	(also to source comments of some file(s)?)
+	definitely to documentation page, in flarConfig.xml section...
+(X) table of contents in blog pages using anchor links.
+(X) clean up comments for ASDocs
+(X) rebuild docs
+(X) write Customizing FLARManager page, and add links to documentation page (from smoother and thresholdAdapter). 
+(X) document support for unscaledMarkerWidth as @size attrib of <pattern> node
+(X) document minimumLabelSize in flarConfig
+(X) document process of developing custom smoother / threshold adapter,
+	including specifying custom params in flarConfig.xml.
+(X) document changes to flarConfig.xml for smoother / threshold adapter.
+(X) update build.xml with all new classes
+(X) SEO - "flash AR", "flash augmented reality", "flar", etc
+(X) add license agreement checkbox on download/svn url page
+(X) put 301 redirect on http://transmote.com/flar
+(X) test deactivation -- holde reports high CPU consumption even while deactivated.
+	(X) modularize adaptive thresholding (see above)
+(-) create flash IDE version (.fla)
+
+(X) expose minimum labeling area in FLARManager
+(-) standardize setParams in FLARCamera3D across all 3D frameworks
+(X) update FLARToolkit, fix 3D framework imports to point at new 'support' package.
+(X) update away3D to 3.3.3
+
+(-) fix ADDED before REMOVED bug
+(X) get native mirroring working
+(X) support manipulating FLARLabeling_BitmapData.minimumLabelSize via flarConfig.xml and FLARManager.
+
+
+[v0.5 release notes]
+created example launcher application class
+examples for Away3D, Alternativa3D, and Sandy3D
+added support for Alternativa3D, and Sandy3D to FLARToolkit source
+compiled external libraries into SWCs
+FLARToolkit remains as source, due to dependencies on the 3D libraries, and to allow devs to poke around
+FLARProxy
+memory and performance testing and optimization
+adaptive thresholding
+marker removal delay
+collada tutorial
+removed FLARMarkerOutline
+FLARManager is now inited by passing the flarConfig path directly into the ctor; legacy loading via FLARManager.initManual.
+
+[v0.5 TODO]
+(X) write InsideRIA article about tweaking performance with FLARManager:
+	combining high markerUpdateThreshold with markerRemovalDelay for fast-moving markers
+	using sampleBlurring to balance performance and accuracy (explain labeling())
+	adjusting adaptiveThresholdingSpeed and Bias for different lighting conditions
+	viewing thresholded source with thresholdSourceDisplay to assess thresholding and blurring impacts
+	(this can all be done via flarConfig.xml!)
+(X) run careful tests to determine effects of adaptive thresholding and blur filter.
+
+(X) email flartoolkit list: comments added to FLARLabeling_BitmapData.labeling()
+(X) post FLARManager support on forums for other 3D engines
+(X) implement pointlight and shaded material for away3D example, per holde's email
+(X) upload new html_docs along with v0.5.
+(X) update FLARManager page.
+(X) include scout.txt file in resources/assets
+(X) put project import process on Inside FLARManager > Getting Started
+	(per email to shachar oz friday)
+(X) update http://words.transmote.com/wp/flarmanager/flarmanager-documentation/ (FLARProxy, what else?)
+(X) write collada tutorial (just a slight modification of basic 3D)
+	http://words.transmote.com/wp/flarmanager/inside-flarmanager/loading-collada-models/
+(X) update existing tutorial writeups with flarConfig in FLARManager ctor change.
+(X) update build.xml doc classes list
+(X) support for other 3D engines:
+	(X) away3D
+	(X) sandy3D
+	(X) alternativa3D
+(X) build SWCs for FLARToolkit and PV3D
+		note, can't build a FLARToolkit SWC because it has away3D and pv3D dependencies.
+		anyway, i think it's better to leave FLARToolkit source in the download --
+		it's good for devs to be able to look through it.
+		got the PV3D SWC built; one strange catch,
+		had to set the link type for the /libs folder to "Merged into code".
+		specifying "External" caused a runtime error.
+(X) remove deprecated bits (?):
+	(X) complete migration to xml config file initialization of FLARManager
+	(X) remove FLARMarkerOutline completely
+	
+(X) FLARProxy as IFLARSource, specified in flarConfig.xml
+(X) run profiler, ensure no memory leaks
+	memory results:
+		FLARManager occupies .75-1% of total memory
+		FLARMarkers are cleaned up properly; no loitering objects.
+		there are some inefficiencies, but they are within FLARToolkit and PaperVision3D.
+	performance results:
+		FLARManager uses ~0.6% of CPU consumed every frame by FLARToolkit
+		FLARLabeling_BitmapData.labeling() is consuming:
+			~77% of CPU per frame (when idle)
+		 	~70% of CPU per frame (with marker)
+		ArrayUtil.createJaggedArray: ~2.8% of all total calls
+		NyObjectStack.prePush:		 ~1.6% of all total calls (~100 times per frame)
+		FLARColorPatt_O3.updateExtpat (with marker) has longest self-time by far: 4.95ms
+(-) find opportunities for optimization
+
+(X) downsampleRatio is affecting away3D example? (email from holde, subject: Re: FLARManager v0.4)
+(X) apply BlurFilter prior to thresholding, to speed labeling process
+(X) marker removal delay
+(X) adaptive thresholding
+(X) gradually increase adaptive thresholding step size after markers are lost 
+(X) per heman's emails to flartoolkit link, provide super-simple example for loading collada,
+	with instructions on how to swap marker (.pat) and collada.
+(-)	might want to create a simpler multi-marker sample, per this comment:
+	http://words.transmote.com/wp/flarmanager/inside-flarmanager/basic-augmented-reality/
+
+
+[v0.4 tutorial release]
+(X) post about flarConfig options on FLARManager documentation page
+(X) test Vector3D and adjust comment accordingly:
+	probably based on (0,0) at screen center, while centerpoint3D is adjusted to (0,0) at upper-left
+	determine if both are needed.
+(X) add tutorial urls to class comments in tutorial classes
+(X) clean up and post ASDocs
+(X) complete links to documentation pages from within tutorial articles
+	(i.e. link to FLARMarker doc page from 2D tutorial.)
+
+
+[v0.4 TODO]
+(X) test all examples with all combos of aspect ratio and downsampleRatio
+	(X) 2D
+	(X) 3D
+	(X) PV3D
+	 
+	fix:
+	(X) 	2D, 3D, PV3D: <4:3, any dsRatio
+	(X) 	3D: downsampleRatio changes make a difference in scale
+
+(X) test resultsToDisplayRatio in both FLARCameraSource and FLARLoaderSource
+(X) update FLARProxy to match changes to downsample/resultsToDisplayRatios
+(X) downsampleRatio should be relative to source, not display
+(X) remove downsampleRatio from FLARManagerExample_Flash3D
+(X) non-4:3 aspect ratios are broken in FME_Flash3D / MarkerOutline3D
+(X) width < height causes strangeness in PV3D
+(X) clean up all the testing junk in SimpleCubes.as
+(X) recompile ASDocs
+
+(X) clean up / port to flarConfigFile existing examples
+(X) mirroring
+(X) non-4:3 example
+(X) non 4:3 sizes (custom FLARCameraSource)
+	distorting PV3D scene/viewport
+	not centering vertically when 4+:3 (widescreen)
+(X) would be nice to pass source/displayW/H in via xml, but then flarSource will not be available for addition
+	to display list immediately on instantiation.
+	one way around this is to make FLARManager a Sprite, and just add it, similar to Loader.
+	would like to keep things composition-based though...hm...
+(-) basic example, with no setup, empty FM ctor, no config xml file.  basically, a quickstart.
+(X) remove Mothership tests
+(X) test all examples
+(X) test without (full and partial) flarSourceSettings node in flarConfig.xml
+(X) FLARLoaderSource specified via flarConfig.xml
+(X) test mirroring in all examples
+(X) test aspect ratios in all examples
+(X) should all use flarConfig.xml, this is now preferred.
+
+
+[v0.4 changes]
+- commercial license
+- changes to FLARCameraSource
+	- true mirroring (does not require mirroring container object)
+		(TODO: not yet working for PV3D...)
+		(TODO: working for flash 3D, but turned off (in FLARMarker) to avoid interfering with PV3D)
+	- full-res video
+		(TODO: doesn't work well with low light, so defaults are still 320x240.)
+	- captureW/H vs. displayW/H
+	- downsampleRatio clarified -- applied to sourceWidth/Height to determine
+		size of BitmapData sent to FLARToolkit
+		ACTUALLY, mostly removed, replaced with captureToDisplayRatio
+	- encapsulated downsampleRatio within FLARManager classes, so FLARManager apps don't need to know about it
+		(TODO: this is not yet complete in Flash3D example...)
+- similar changes to FLARLoaderSource
+	- full-res display
+	- captureW/H vs. displayW/H
+- matrix-level smoothing allows developers to set the amount of smoothing,
+	and to easily implement their own smoothing algorithms
+- many application settings can now be specified in xml file,
+	without recompiling (use FLARManager.initFromFile):
+	- mirroring and smoothing
+	- external file paths, e.g. camera params and pattern files
+- changes to FLARMarker
+	- consolidated FLARMarkerOutline into FLARMarker;
+	  deprecated FLARMarkerOutline
+	- provides vector3D, rotationX/Y/Z, what else?
+	- sessionId
+	- applySmoothing (see above)
+	- better disposal
+- changes to FLARManager
+	- initFromFile
+	- exposed markerUpdateThreshold
+	- smoothing / smoother (see above)
+- Flash3D working, except for non-4:3 aspect ratios
+- 12 new sample patterns
+- ASDocs
+- there are a LOT of new features here, so there are likely bugs!  please help me squash them.
+- PV3D and FLARToolkit now distributed as SWC instead of individual files,
+	to make downloading and updating from the repo faster
+- known bugs:
+	specifying a FLARCameraSource with width < height with PV3D causes strangeness 
+
+
+
+( ) test FLARTransMat.transMatContinue with new code uploaded by saqoosha
+
+( ) oddly, still can't really go over 320x240 for capture.
+	even though BitmapData being sent to FLARToolkit is definitely downsampled to 320x240,
+	FLARLabeling_BitmapData.labeling() iterates about 3x as long with a 640x480 capture.
+	can't figure out why...
+
+( ) create camera_para.dat with as little distortion as possible.
+	(use long focal width unibrain lens?)
+	distortion is quite noticeable when using very long or very tall aspect ratios.
+
+(-) since new markers are added before old markers are removed,
+	moving a marker fast enough for it to register as a new marker in a new location
+	can cause a problem where a handler that receives the removed marker second
+	can set a Sprite's visibility to false after the marker is re-added in its
+	new location, thus causing a marker to continue to update, but appear to be gone.
+	solution is to cache added markers in FLARManager.detectMarkers,
+	and only dispatch their added events *after* all removed events have been dispatched.
+	not sure how this will tie in with marker management Vectors within FLARManager;
+	ideally, only thing that changes is order of dispatchEvents.
+	repro: FLARManagerTutorial_2D:
+		move marker fast, circle will disappear,
+		though updated events are still being sent to console.
+	
+	actually, this cannot be fixed within FLARManager without more advanced tracking/
+	prediction of fast-moving marker locations.  problem happens because removal is no longer immediate,
+	but is delayed by markerRemovalDelay frames.  so the fast-moving marker
+	reappears somewhere else before it's removed, a couple frames later.
+	since there is no longer any way to tell if the new marker is the same as the old
+	(because it's too far away from the removal position),
+	this cannot be accounted for.
+	solution, then, lies in the app using FLARManager -- always create a new container
+	when a marker appears, do not just toggle the visibility of the container.
+
+(X) move config loading and parsing out of FLARManager into its own class, FLARManagerConfigLoader.
+
+(X) documentation!  (+ ASDocs)
+
+(X) reduce jitter by using an ease value that corresponds to the distance the marker moved b/w frames.
+	if small motion (i.e. jitter in a mostly-stationary marker), use slow(low) ease value.
+	if large motion (i.e. moving marker), use fast(high) ease value.
+	NOTE: can do this fairly easily now by changing FLARManager.smoothing on-the-fly;
+		  more specifically, by using FLARManager.smoothing as a base, and by sending a value
+		  for numFrames to each detected FLARMarker that deviates from FLARManager.smoothing
+		  based on the amount of motion in the FLARMarker between current and previous frames.
+		  or better yet, based on amount of motion averaged over previous N frames.
+	NOTE: have to check for motion in rotation as well as position.
+		  perhaps possible to check for motion in matrix values?
+
+(X) calculate velocity and acceleration of markers and extrapolates when markers
+	disappear momentarily.   (i.e. better fast-moving marker detection.)
+
+(X) add patternToBorderRatio to FLARMultiMarkerDetector:
+	use FLARDynamicRatioColorPatt_O3 instead of FLARColorPatt_O3.
+
+(X) remove mothership tests!!
+	- MarkerOutliner
+
+(X) allow ability to specify patterns in xml file, like MythManagerCMS / FGAR.
+
+(X) redesign FLARProxy so it can be used as a source by FLARManager,
+	so any application can just init a FLARManager instance like normal,
+	but specify a FLARProxy as a source (instead of the default FLARCameraSource, for example).
+	also, allow FLARProxy usage to be set via flarConfig.xml.
+
+(X) ensure FLARMarker instances are being disposed properly
+	after being copied to new (updated) instances, and after removal.
+
+(X) move cameraParamsPath and patterns params from FLARManager ctor into a separate init method,
+	and move flarConfigPath into ctor params.
+	(i.e. make flarConfigPath the default way to instantiate FLARManager.)
+
+(X) implement converters for other 3D engines, from makc's links on the google group
+	http://groups.google.com/group/flartoolkit-userz/web/links
+	(look at this: http://makc.googlecode.com/svn/trunk/flash/alternativa3d_flar/SimpleTest.as
+	 for info on converting to alternativa3d and also on dissecting FLARParam)
+	also, saqoosha just added Away3D support -- grab matrix conversion from that and add to FLARManager.
+
+(X) FLARMarker and FLARMarkerOutline are confusing.
+	some doubled information, may only need one class...assess.
+	yeah, this should be done.  just move all accessors from FLARMarkerOutline up to FLARMarker.
+		possibly leave FLARMarker.outline available for one revision, and add trace in outline getter
+		that reads "this is deprecated".
+
+(X) dynamic thresholding: take a look at makc's solution;
+	also, ARToolkitPlus method for auto-thresholding:
+	http://studierstube.icg.tu-graz.ac.at/handheld_ar/artoolkitplus.php
+	take avg b/w darkest and lightest pixels within detected marker.
+	perhaps just grab ARToolkitPlus source and integrate into FLARToolkit?
+
+(X) compile SWC of libspark and pv3d for distrib w/ FLARManager
+
+(X) add easing (optional, set with flag, on by default) to transformation matrices
+
+(X) add z to FLARMarkerOutline.centerpoint (is there a native FP10 Point3D?)
+
+(X) can i get rid of downsampleRatio?  it's a complicated concept,
+	and could probably be automated by just specifying screen size and source size,
+	sim to what i did in...? VideoDownsamplerTest?
+
+(-) mirroring FLARCameraSource messes with marker detection.
+	rewrite to flip transmats if source is mirrored (?)
+
+(x) detect marker rotation for 2D tracking, and add to FLARMarker.as
+
+(x) x/y of FLARMarker.outline should already be scaled according to downsampleRatio
+	when the FLARMarker is instantiated.
+
+(X) modify FLARCameraSource to output video at full-res, but downsample according to downsampleRatio.
+	see VideoDownsamplerTest for this, or my modded WebcamFaceDetector.
+
+(X) specify settable delay (in frames) before removing a marker.
+	(i.e. "stickier" marker detection.)
+	make available via flarConfig.xml.
+
+(-) provide example that draws objects with pv3D
+	this example should demonstrate addition and removal events
+	with some special animation on each event.
+	how bout a simple box that spins up out of the marker on addition,
+	and down into nothing on removal?
+	
+(-) add an article to sanflashcisco.com
+
+(X) contact alex about presenting next month:
+	FLARToolkit
+	maaash.jp (face detection)
+	soulwire's motion detection (subtractive analysis)
+
+(X) recreate patterns at higher res;
+	the 3x3 ones all get confused for one another.
+
+(X) get new version of FLARToolkit, with ratio params in FLARCode ctor.
+
+(X) test FLARPattern._patternToBorderRatio (with tarotaro's marker generator)
+
+(X) patternToBorderRatio is working, but only in FLARSingleMarkerDetector.
+	it gets divided by 10, and then passed into FLARDynamicRatioColorPatt_O3 ctor.
+	follow that through further to be sure it's getting used correctly.
+
+(X) figure out FLARMarker.direction, and add to method doc
+	need to figure out what 0-3 map to (i think up.left.down.right, same as .pat file, but verify)
+
+(X) build new .pat files for all the new patterns i created
+
+(X) support different resolution pat files, not just 16x16
+	(will have to have error checking on patt load; i don't think FLARToolkit
+	can handle different sizes in the same session.)
+	it cannot.  FLARMultiMarkerManager will throw a FLARException if any of the loaded patterns
+	are not the same width/height as the first loaded pattern.  edit this to be a more descriptive error.
+
+(X) support mirrored camera output
+
+
+
+[optimization opportunities]
+( )	replace "jaggedArrays" with Vectors.  try to eliminate multidimensionality as much as possible;
+	FLARMatchPatt_Color_WITHOUT_PCA.evaluate, for example, uses a 3D array to compare patterns.
+
+( ) convert Arrays to Vectors
+
+( ) use PixelBender to run averaging (synchronously).
+
+( ) create b/w-only tracking mode (3x speed increase here...)
+
+( ) FLARBitmapDataReader is currently using BitmapData.getPixel.
+	could use BitmapData.getVector instead, particularly in FLARBitmapDataReader.getPixelSet().
+	also, if there's a way to update a source image as Vector instead of BitmapData,
+	may be gains to be had there as well...?

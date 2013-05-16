@@ -1,0 +1,14 @@
+			<patterns resolution="8" patternToBorderRatioX="50" patternToBorderRatioY="50" minConfidence="0.5" >
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_0.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_1.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_7.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_8.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_9.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_10.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_12.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_13.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_14.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_16.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_17.pat" />
+				<pattern path="../resources/flarToolkit/patterns/beepatt8_12markers/beepatt8_18.pat" />
+			</patterns>

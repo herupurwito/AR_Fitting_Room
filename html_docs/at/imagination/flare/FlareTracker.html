@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="FlareTracker,at.imagination.flare.FlareTracker,MARKER_BCH,MARKER_BCH2,MARKER_DATAMATRIX,MARKER_FRAME,MARKER_SIMPLE_ID,MARKER_SPLIT,MARKER_UNDEFINED,addButton,addMarkerDetector,getDataMatrixMessage,getProjectionMatrix,getProjectionMatrix,getProjectionMatrix,getTrackerResults,getTrackerResults,getTrackerResults,getTrackerResults2D,getTrackerResults2D,getTrackerResults2D,getVersion,getVersion,getVersion,init,init,setButtonHandler,setLogger,setLogger,setLogger,update,update,update"><title>at.imagination.flare.FlareTracker</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'FlareTracker - [FLARManager 1.1 API Reference]';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">FLARManager 1.1 API Reference</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?at/imagination/flare/FlareTracker.html&amp;at/imagination/flare/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">FlareTracker</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FlareTracker"); titleBar_setSubNav(true,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">at.imagination.flare</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  FlareTracker</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">FlareTracker  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../at/imagination/flare/IFlareTracker.html">IFlareTracker</a></td></tr></table><p></p><p></p><p></p>
+ FlareTracker is a wrapper class providing convenient methods to use the
+ functions provided by <b>libFlareTracker</b>. For an example on how to use it see
+ <code>samples/TestTracker</code>.
+ <p></p><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#FlareTracker()" class="signatureLink">FlareTracker</a>()</div><div class="summaryTableDescription">
+	  constructor
+	 </div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addMarkerDetector()" class="signatureLink">addMarkerDetector</a>(markerType:uint, param1:Number = 0, param2:Number = 0):Boolean</div><div class="summaryTableDescription">
+	  Adds a marker detector to the tracker.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getDataMatrixMessage()" class="signatureLink">getDataMatrixMessage</a>(index:uint):String</div><div class="summaryTableDescription">
+	  Returns the message encoded in a data matrix marker.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getProjectionMatrix()" class="signatureLink">getProjectionMatrix</a>():ByteArray</div><div class="summaryTableDescription">
+	  Returns the projection matrix.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getTrackerResults()" class="signatureLink">getTrackerResults</a>():ByteArray</div><div class="summaryTableDescription">
+	  Returns the tracking results.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getTrackerResults2D()" class="signatureLink">getTrackerResults2D</a>():ByteArray</div><div class="summaryTableDescription">
+	  Returns the 2d-tracking results.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getVersion()" class="signatureLink">getVersion</a>():String</div><div class="summaryTableDescription">
+	  Returns the version of flareTracker
+	 
+	  </div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#init()" class="signatureLink">init</a>(stage:Stage, dataPath:String, camFile:String, camWidth:uint, camHeight:uint, initDoneCB:Function):void</div><div class="summaryTableDescription">
+	  Initializes the tracker.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setLogger()" class="signatureLink">setLogger</a>(obj:Object, logger:Function, level:uint):void</div><div class="summaryTableDescription">
+	  Sets a logging function: Use this to display logging output from libFlareTracker.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#update()" class="signatureLink">update</a>(image:BitmapData):uint</div><div class="summaryTableDescription">
+	  This method needs to be called every frame to obtain the tracking results.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr></table></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_BCH" class="signatureLink">MARKER_BCH</a> : int = 2<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_BCH constant defines the value of the markerType
+	 property returned by getTrackerResults() when a BCH marker is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_BCH2" class="signatureLink">MARKER_BCH2</a> : int = 3<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_BCH2 constant defines the value of the markerType
+	 property returned by getTrackerResults() when a BCH2 marker is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_DATAMATRIX" class="signatureLink">MARKER_DATAMATRIX</a> : int = 6<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_DATAMATRIX constant defines the value of the markerType
+	 property returned by getTrackerResults() when a data matrix marker is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_FRAME" class="signatureLink">MARKER_FRAME</a> : int = 4<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_FRAME constant defines the value of the markerType
+	 property returned by getTrackerResults() when a frame marker is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_SIMPLE_ID" class="signatureLink">MARKER_SIMPLE_ID</a> : int = 1<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_SIMPLE_ID constant defines the value of the markerType
+	 property returned by getTrackerResults() when a simple-id marker is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_SPLIT" class="signatureLink">MARKER_SPLIT</a> : int = 5<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_SPLIT constant defines the value of the markerType
+	 property returned by getTrackerResults() when a split marker is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MARKER_UNDEFINED" class="signatureLink">MARKER_UNDEFINED</a> : int = 0<div class="summaryTableDescription">[static] 
+	 The FlareTracker.MARKER_UNDEFINED constant defines the value of the markerType
+	 property returned by getTrackerResults() when a marker of an unkown type is found.</div></td><td class="summaryTableOwnerCol">FlareTracker</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="FlareTracker()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">FlareTracker</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function FlareTracker()</code><p></p><p>
+	  constructor
+	 </p></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="addMarkerDetector()"></a><a name="addMarkerDetector(uint,Number,Number)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addMarkerDetector</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function addMarkerDetector(markerType:uint, param1:Number = 0, param2:Number = 0):Boolean</code><p></p><p></p><p>
+	  Adds a marker detector to the tracker. The following marker types are
+	  supported: simple&nbsp;id, BCH, BCH2, frame&nbsp;marker, split&nbsp;marker,
+	  data&nbsp;matrix&nbsp;marker.
+	  Call this method once for every marker type you want to track for.
+	 
+	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">markerType</span>:uint</code> &mdash; Type of marker to track for. Pass one of the following values:
+	  <ul>
+	    <li><code>FlareTracker::MARKER_SIMPLE_ID</code> to detect <b>simple id markers</b>.
+	      <p>
+	      <code>param1</code> specifies the border width of the marker -
+	      more precisely this is the ratio <code>borderWidth/markerWidth</code>.
+	      If this parameter is not passed, a default value of 0.125 is used.
+	      </p>
+	 		<p>
+	      <code>param2</code> specifies the width of the marker in millimeters.
+	      If this parameter is not passed, a default value of 80 is used.
+	      </p>
+	    </li>
+	 
+	    <li><code>FlareTracker::MARKER_BCH</code> to detect <b>BCH markers</b>.
+	      <p>
+	      <code>param1</code> specifies the border width ratio (defaults to 0.125)
+	 		</p>
+	 	<p>
+	      <code>param2</code> specifies the width of the marker in millimeters (defaults to 80)
+	      </p>
+	    </li>
+	 
+	    <li><code>FlareTracker::MARKER_BCH2</code> to detect <b>BCH2 markers</b>.
+	      <p>
+	      <code>param1</code> specifies the border width ratio (defaults to 0.1875)
+	      </p>
+	 	<p>
+	      <code>param2</code> specifies the width of the marker in millimeters (defaults to 80)
+	      </p>
+	    </li>
+	 
+	    <li><code>FlareTracker::MARKER_FRAME</code> to detect <b>frame markers</b>.
+	      <p>
+	      <code>param1</code> specifies the border width ratio (defaults to 0.04545)
+	 		</p>
+	 		<p>
+	      <code>param2</code> specifies the width of the marker in millimeters (defaults to 100)
+	      </p>
+	    </li>
+	 
+	    <li><code>FlareTracker::MARKER_SPLIT</code> to detect <b>split markers</b>.
+	      <p>
+	      <code>param1</code> specifies the width of the marker in millimeters (defaults to 61)
+	      </p>
+	 		<p>
+	      <code>param2</code> specifies the height of the marker in millimeters (defaults to 90)
+	      </p>
+	    </li>
+	 
+	    <li><code>FlareTracker::MARKER_DATAMATRIX</code> to detect <b>data matrix markers</b>.
+	      <p>
+	      <code>param1</code> specifies the border width ratio (defaults to 0.035)
+	      </p>
+	 		<p>
+	      <code>param2</code> is not used.
+	      </p>
+	    </li>
+	  </ul>
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">param1</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The use of this parameter depends on the marker type (see description above).
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">param2</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The use of this parameter depends on the marker type (see description above).
+	 
+	  </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> on success.
+	 </td></tr></table></div><a name="getDataMatrixMessage()"></a><a name="getDataMatrixMessage(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getDataMatrixMessage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getDataMatrixMessage(index:uint):String</code><p></p><p></p><p>
+	  Returns the message encoded in a data matrix marker.
+	  Call this method after <code>update()</code> found one or more targets.
+	 
+	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; Retrieves the message for the data matrix marker at position <code>index</code>.
+	  Where <code>index</code> is smaller than the number of targets returned by
+	  <code>update()</code>.
+	 
+	  </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; Message encoded in data matrix marker, or <code>null</code>
+	  if no message is found. <code>null</code> is also returned if
+	  <code>index</code> doesn't point to a marker of type data matrix.
+	 </td></tr></table></div><a name="getProjectionMatrix()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getProjectionMatrix</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getProjectionMatrix():ByteArray</code><p></p><p></p><p>
+	  Returns the projection matrix. Since the camera doesn't move during tracking,
+	  this needs to be called only once after <code>init()</code> to obtain the
+	  projection matrix. 
+	 
+	  </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ByteArray</code> &mdash; The matrix is retured as a <code>ByteArray</code> containing 4x4 Numbers.
+	 
+	  </td></tr></table><br/><span class="label"> Example </span><br/>To set the projection matrix for a camera in
+	  <a href="http://blog.papervision3d.org/" target="">papervison3D</a>,
+	  you would do the following:
+	 
+	  <pre>
+	    var mat:ByteArray = flareTrackerTracker.getProjectionMatrix();
+	    var proj:Matrix3D = (_camera as Camera3D).projection;
+	  &nbsp;
+	    proj.n11 =  mat.readFloat();
+	    proj.n21 = -mat.readFloat();
+	    proj.n31 =  mat.readFloat();
+	    proj.n41 =  mat.readFloat();
+	  &nbsp;
+	    proj.n12 =  mat.readFloat();
+	    proj.n22 = -mat.readFloat();
+	    proj.n32 =  mat.readFloat();
+	    proj.n42 =  mat.readFloat();
+	  &nbsp;
+	    proj.n13 =  mat.readFloat();
+	    proj.n23 = -mat.readFloat();
+	    proj.n33 =  mat.readFloat();
+	    proj.n43 =  mat.readFloat();
+	  &nbsp;
+	    proj.n14 =  mat.readFloat();
+	    proj.n24 = -mat.readFloat();
+	    proj.n34 =  mat.readFloat();
+	    proj.n44 =  mat.readFloat();
+	  </pre>
+	 
+	  Note that the 2nd row is inverted, because we need to convert from a
+	  right-handed coordinate system (used by flare) to a left-handed
+	  coordinate system (used by
+	  <a href="http://blog.papervision3d.org/" target="">papervison3D</a>).
+	 </div><a name="getTrackerResults()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getTrackerResults</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getTrackerResults():ByteArray</code><p></p><p></p><p>
+	  Returns the tracking results. Call this method after <code>update()</code>
+	  found one or more targets.
+	  
+	  </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ByteArray</code> &mdash; The tracking results are returned as a <code>ByteArray</code> structure
+	  of the following form:
+	  <pre>
+	    markerType:int;          // type of marker, can be one of the following:
+	                             //   MARKER_SIMPLE_ID
+	                             //   MARKER_BCH
+	                             //   MARKER_BCH2
+	                             //   MARKER_FRAME
+	                             //   MARKER_SPLIT
+	                             //   MARKER_DATAMATRIX
+	    targetID:int;            // unique identifier of the target
+	  &nbsp;
+	    poseMatrix_11:Number;    // pose matrix: model view matrix of target in 3D space
+	    poseMatrix_21:Number;
+	    poseMatrix_31:Number;
+	    poseMatrix_41:Number;
+	  &nbsp;
+	    poseMatrix_12:Number;
+	    poseMatrix_22:Number;
+	    poseMatrix_32:Number;
+	    poseMatrix_42:Number;
+	  &nbsp;
+	    poseMatrix_13:Number;
+	    poseMatrix_23:Number;
+	    poseMatrix_33:Number;
+	    poseMatrix_43:Number;
+	  &nbsp;
+	    poseMatrix_14:Number;
+	    poseMatrix_24:Number;
+	    poseMatrix_34:Number;
+	    poseMatrix_44:Number;
+	  </pre>
+	  This structure is repeated in the <code>ByteArray</code> for every target found.
+	 
+	  </td></tr></table><br/><span class="label"> Example </span><br/>This example shows how the tracker results can be parsed.
+	  <pre>
+	    var markerType:int;
+	    var targetID:int;
+	    var mat:Matrix3D = new Matrix3D();
+	    var numTargets:uint = flareTrackerTracker.update(bitmap);
+	    var targetData:ByteArray = flareTrackerTracker.getTrackerResults();
+      &nbsp;
+	    // iterate over all visible targets
+	    for (var i:uint = 0; i &lt; numTargets; i++)
+	    {
+	      markerType = targetData.readInt();
+	      targetID   = targetData.readInt();
+      &nbsp;
+	      // read pose matrix (= model view matrix)
+	      mat.n11 =  targetData.readFloat();
+	      mat.n21 = -targetData.readFloat();
+	      mat.n31 =  targetData.readFloat();
+	      mat.n41 =  targetData.readFloat();
+      &nbsp;
+	      mat.n12 =  targetData.readFloat();
+	      mat.n22 = -targetData.readFloat();
+	      mat.n32 =  targetData.readFloat();
+	      mat.n42 =  targetData.readFloat();
+      &nbsp;
+	      mat.n13 =  targetData.readFloat();
+	      mat.n23 = -targetData.readFloat();
+	      mat.n33 =  targetData.readFloat();
+	      mat.n43 =  targetData.readFloat();
+      &nbsp;
+	      mat.n14 =  targetData.readFloat();
+	      mat.n24 = -targetData.readFloat();
+	      mat.n34 =  targetData.readFloat();
+	      mat.n44 =  targetData.readFloat();
+      &nbsp;
+	      // show target object and apply transformation
+	      showObject(markerType, targetID, mat);
+	    }
+	  </pre>
+	 
+	  The 2nd row of the pose matrix is inverted to convert from a right-handed
+	  coordinate system to a left-handed coordinate system.
+	 </div><a name="getTrackerResults2D()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getTrackerResults2D</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getTrackerResults2D():ByteArray</code><p></p><p></p><p>
+	  Returns the 2d-tracking results. Call this method after <code>update()</code>
+	  found one or more targets.
+	  
+	  </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ByteArray</code> &mdash; The 2d-tracking results are returned as a <code>ByteArray</code> structure
+	  of the following form:
+	  <pre>
+	    markerType:int;      // type of marker, can be one of the following:
+	                         //   MARKER_SIMPLE_ID
+	                         //   MARKER_BCH
+	                         //   MARKER_BCH2
+	                         //   MARKER_FRAME
+	                         //   MARKER_SPLIT
+	                         //   MARKER_DATAMATRIX
+	    targetID:int;        // unique identifier of the target
+	  &nbsp;
+	  &nbsp;                 // corner points of the rectangular marker in image space
+	    cornerUL_x:Number;   // upper left corner point
+	    cornerUL_y:Number;
+	  &nbsp;
+	    cornerUR_x:Number;   // upper right corner point
+	    cornerUR_y:Number;
+	  &nbsp;
+	    cornerLR_x:Number;   // lower right corner point
+	    cornerLR_y:Number;
+	  &nbsp;
+	    cornerLL_x:Number;   // lower left corner point
+	    cornerLL_y:Number;
+	  </pre>
+	  This structure is repeated in the <code>ByteArray</code> for every target found.
+	 
+	 </td></tr></table></div><a name="getVersion()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getVersion</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getVersion():String</code><p></p><p></p><p>
+	  Returns the version of flareTracker
+	 
+	  </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; Version number as String formatted as <code>major.minor.build</code>
+	 </td></tr></table></div><a name="init()"></a><a name="init(flash.display.Stage,String,String,uint,uint,Function)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">init</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function init(stage:Stage, dataPath:String, camFile:String, camWidth:uint, camHeight:uint, initDoneCB:Function):void</code><p></p><p></p><p>
+	  Initializes the tracker. This needs to be called before any other method is called
+	  (with the exception of <code>getVersion()</code> amd <code>setLogger()</code>)
+	 
+	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">stage</span>:Stage</code> &mdash; The application's stage.
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">dataPath</span>:String</code> &mdash; Path were the datafiles (camera ini-file and license file) are located.
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">camFile</span>:String</code> &mdash; Name of the camera initalization file.
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">camWidth</span>:uint</code> &mdash; Width of the camera input in pixels.
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">camHeight</span>:uint</code> &mdash; Height of the camera input in pixels.
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">initDoneCB</span>:Function</code> &mdash; Callback function to be invoked, when initialization has
+	  finished. This is necessary, because all input files will be loaded
+	  asynchronously before libFlareNFT can initialize the tracker.
+	  The function must be of type <code>function():void</code>
+	 </td></tr></table></p></div><a name="setLogger()"></a><a name="setLogger(Object,Function,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setLogger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setLogger(obj:Object, logger:Function, level:uint):void</code><p></p><p></p><p>
+	  Sets a logging function: Use this to display logging output from libFlareTracker.
+	  
+	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">obj</span>:Object</code> &mdash; If the logging function is a method of an object, set this to
+	  the method's object. Otherwise pass <code>null</code>
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">logger</span>:Function</code> &mdash; The logging function that will be called from libFlareTracker.
+	  The function must be of type <code>function(int,&nbsp;String):void</code>
+	 
+	  </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">level</span>:uint</code> &mdash; Only produce logging output for log-levels &lt;= <code>level</code>
+	 </td></tr></table></p></div><a name="update()"></a><a name="update(flash.display.BitmapData)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">update</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function update(image:BitmapData):uint</code><p></p><p></p><p>
+	  This method needs to be called every frame to obtain the tracking results.
+	  
+	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">image</span>:BitmapData</code> &mdash; The bitmap grabbed from the camera.
+	 
+	  </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; Number of targets found.
+	 </td></tr></table></div><div class="detailSectionHeader">Constant Detail</div><a name="constantDetail"></a><a name="MARKER_BCH"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_BCH</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public static const MARKER_BCH:int = 2</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_BCH constant defines the value of the markerType
+	 property returned by getTrackerResults() when a BCH marker is found.
+	 </p></div><a name="constantDetail"></a><a name="MARKER_BCH2"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_BCH2</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MARKER_BCH2:int = 3</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_BCH2 constant defines the value of the markerType
+	 property returned by getTrackerResults() when a BCH2 marker is found.
+	 </p></div><a name="constantDetail"></a><a name="MARKER_DATAMATRIX"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_DATAMATRIX</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MARKER_DATAMATRIX:int = 6</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_DATAMATRIX constant defines the value of the markerType
+	 property returned by getTrackerResults() when a data matrix marker is found.
+	 </p></div><a name="constantDetail"></a><a name="MARKER_FRAME"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_FRAME</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MARKER_FRAME:int = 4</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_FRAME constant defines the value of the markerType
+	 property returned by getTrackerResults() when a frame marker is found.
+	 </p></div><a name="constantDetail"></a><a name="MARKER_SIMPLE_ID"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_SIMPLE_ID</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MARKER_SIMPLE_ID:int = 1</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_SIMPLE_ID constant defines the value of the markerType
+	 property returned by getTrackerResults() when a simple-id marker is found.
+	 </p></div><a name="constantDetail"></a><a name="MARKER_SPLIT"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_SPLIT</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MARKER_SPLIT:int = 5</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_SPLIT constant defines the value of the markerType
+	 property returned by getTrackerResults() when a split marker is found.
+	 </p></div><a name="constantDetail"></a><a name="MARKER_UNDEFINED"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MARKER_UNDEFINED</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MARKER_UNDEFINED:int = 0</code><p></p><p></p><p>
+	 The FlareTracker.MARKER_UNDEFINED constant defines the value of the markerType
+	 property returned by getTrackerResults() when a marker of an unkown type is found.
+	 </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>FLARManager is released under the GNU GPL: http://www.gnu.org/licenses</footer><br/>Sun Jan 30 2011, 04:49 PM -08:00  </center></div></body></html><!--FLARManager is released under the GNU GPL: http://www.gnu.org/licenses<br/>Sun Jan 30 2011, 04:49 PM -08:00  -->

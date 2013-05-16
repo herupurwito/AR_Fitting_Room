@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>user</author>
+      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.1;  Revision: 847M;  Platform: x64;  Configuration: Release_Max2012_static</authoring_tool>
+      <source_data>file://192.168.1.19/share/pohon%20x.max</source_data>
+    </contributor>
+    <created>2013-04-25T12:01:00</created>
+    <modified>2013-04-25T12:01:00</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="_1_-_Default">
+      <profile_COMMON>
+        <newparam sid="pohonx_png-surface">
+          <surface type="2D">
+            <init_from>pohonx_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="pohonx_png-sampler">
+          <sampler2D>
+            <source>pohonx_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0.5882353 0.5882353 0.5882353 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="pohonx_png-sampler" texcoord="CHANNEL1"/>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>9.999999</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="OpenCOLLADA3dsMax">
+          <extended_shader>
+            <apply_reflection_dimming>0</apply_reflection_dimming>
+            <dim_level>0</dim_level>
+            <falloff_type>0</falloff_type>
+            <index_of_refraction>1.5</index_of_refraction>
+            <opacity_type>0</opacity_type>
+            <reflection_level>3</reflection_level>
+            <wire_size>1</wire_size>
+            <wire_units>0</wire_units>
+          </extended_shader>
+          <shader>
+            <ambient_diffuse_lock>1</ambient_diffuse_lock>
+            <ambient_diffuse_texture_lock>1</ambient_diffuse_texture_lock>
+            <diffuse_specular_lock>0</diffuse_specular_lock>
+            <soften>0.1</soften>
+            <use_self_illum_color>0</use_self_illum_color>
+          </shader>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="_1_-_Default-material" name="_1_-_Default">
+      <instance_effect url="#_1_-_Default"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="geom-Cylinder001" name="Cylinder001">
+      <mesh>
+        <source id="geom-Cylinder001-positions">
+          <float_array id="geom-Cylinder001-positions-array" count="144">6.819685 7.38144e-8 0 4.822245 4.822245 -1.37378e-14 -2.98098e-7 6.819685 -2.79486e-14 -4.822245 4.822245 -1.37378e-14 -6.819685 -5.22381e-7 0 -4.822244 -4.822246 -1.37378e-14 8.13239e-8 -6.819685 4.73068e-16 4.822244 -4.822246 -1.37378e-14 2.730095 -5.01275e-7 35.08989 1.00041 4.175827 35.08989 -3.175417 5.905511 35.08989 -7.351245 4.175827 35.08989 -9.080929 -1.01755e-6 35.08989 -7.351244 -4.175829 35.08989 -3.175417 -5.905513 35.08989 1.000409 -4.175829 35.08989 3.66436 -6.86087e-7 67.05258 2.178982 3.586017 67.05258 -1.407035 5.071394 67.05258 -4.993052 3.586017 67.05258 -6.478429 -1.12944e-6 67.05258 -4.993052 -3.586018 67.05258 -1.407035 -5.071395 67.05258 2.178982 -3.586018 67.05258 5.460413 -7.17702e-7 90.48811 4.205686 3.029178 90.48811 1.176507 4.283905 90.48811 -1.852671 3.029178 90.48811 -3.107398 -1.09221e-6 90.48811 -1.85267 -3.02918 90.48811 1.176508 -4.283906 90.48811 4.205686 -3.02918 90.48811 3.139634 -1.13005e-6 115.4775 2.220056 2.220055 115.4775 -1.31813e-7 3.139632 115.4775 -2.220056 2.220055 115.4775 -3.139634 -1.40453e-6 115.4775 -2.220056 -2.220058 115.4775 4.28644e-8 -3.139636 115.4775 2.220056 -2.220058 115.4775 0.4693837 -1.40791e-6 138.0445 -0.1346453 1.458253 138.0445 -1.5929 2.062281 138.0445 -3.051154 1.458253 138.0445 -3.655183 -1.5882e-6 138.0445 -3.051154 -1.458256 138.0445 -1.5929 -2.062285 138.0445 -0.1346457 -1.458256 138.0445</float_array>
+          <technique_common>
+            <accessor source="#geom-Cylinder001-positions-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Cylinder001-normals">
+          <float_array id="geom-Cylinder001-normals-array" count="144">0.8101323 -1.03313e-7 -0.5862472 0.5763212 0.5592611 -0.5958867 0.6974676 0.7155797 0.03853106 0.9990239 -1.01111e-8 0.04417359 0.01708432 0.7846766 -0.6196699 -0.01777695 0.9995189 0.02541886 -0.532333 0.5493906 -0.6440433 -0.7157095 0.6982746 0.0131282 -0.7562649 -8.32922e-8 -0.6542655 -0.9999656 -1.05424e-7 0.008299699 -0.532333 -0.5493906 -0.6440433 -0.7157094 -0.6982748 0.01312819 0.01708431 -0.7846765 -0.61967 -0.01777692 -0.9995188 0.02541885 0.576321 -0.5592612 -0.5958868 0.6974677 -0.7155796 0.03853105 0.5206964 0.5339046 0.666199 -0.01328964 0.7618664 0.6475978 -0.5562223 0.5428777 0.6292064 -0.7832845 -2.34594e-6 0.6216635 -0.5562221 -0.5428814 0.6292033 -0.01328959 -0.7618664 0.6475978 0.5206962 -0.5339085 0.6661961 0.7387924 -2.68552e-6 0.6739331 0.7033039 0.7103295 -0.02820619 0.9985873 -5.1048e-8 -0.05313677 -0.006253893 0.9995039 0.03087077 -0.7070811 0.7016364 0.08799258 -0.9938211 -8.85368e-8 0.1109938 -0.707081 -0.7016364 0.08799256 -0.006253912 -0.9995037 0.03087078 0.7033038 -0.7103297 -0.02820618 0.7163339 0.6975636 0.01645477 0.9999688 0 0.007897194 0.01921544 0.9990792 0.03836003 -0.6958675 0.7155007 0.06186226 -0.9974048 -1.05522e-7 0.07199787 -0.6958674 -0.715501 0.06186223 0.01921554 -0.9990792 0.03835998 0.7163337 -0.6975638 0.01645473 0.705395 0.7033355 0.08796067 0.9945061 1.02918e-8 0.1046786 0.002442613 0.9988913 0.04701269 -0.7056848 0.7085057 0.005340703 -0.9999268 -3.4245e-8 -0.01209712 -0.7056848 -0.7085057 0.00534068 0.002442599 -0.9988912 0.04701268 0.705395 -0.7033355 0.08796068</float_array>
+          <technique_common>
+            <accessor source="#geom-Cylinder001-normals-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Cylinder001-map1">
+          <float_array id="geom-Cylinder001-map1-array" count="198">0.2154823 0.1080471 0 0.2502803 0.1082277 0 0.2579053 0.3234079 0 0.2170531 0.3234565 0 0.2853296 0.1094374 0 0.2950161 0.3239992 0 0.3220995 0.111038 0 0.327428 0.3249818 0 0.3601472 0.1116747 0 0.3595437 0.3259534 0 0.09473444 0.1153591 0 0.1049132 0.3291923 0 0.137959 0.1118742 0 0.1380516 0.3265283 0 0.1786097 0.1092793 0 0.1758177 0.3244688 0 0.275492 0.9680968 0 0.275773 0.9584641 0 0.2842776 0.9518241 0 0.2950097 0.9521881 0 0.3037083 0.9589626 0 0.3036965 0.9685419 0 0.2953343 0.975251 0 0.2836128 0.9750577 0 0.2497368 0.518131 0 0.2203714 0.5182871 0 0.2792527 0.5183493 0 0.3087122 0.5190611 0 0.338798 0.5207574 0 0.1376018 0.5223175 0 0.1642607 0.5204216 0 0.1918612 0.5190248 0 0.2424792 0.6608992 0 0.2266142 0.6610652 0 0.2624918 0.6610383 0 0.2877482 0.661841 0 0.3143411 0.6636161 0 0.1688346 0.6643437 0 0.1922483 0.6624933 0 0.2111728 0.6615177 0 0.2501564 0.813343 0 0.2340436 0.8134482 0 0.2666865 0.8136044 0 0.2838732 0.814164 0 0.3012124 0.8150759 0 0.1843029 0.8164143 0 0.2017117 0.8149211 0 0.2180367 0.8139605 0 0.3229151 0.03440283 0 0.2951326 0.05655286 0 0.2946924 0.08830811 0 0.05260841 0.1186436 0 0.07254577 0.3324502 0 0.388032 0.08956306 0 0.3886772 0.05776081 0 0.3616899 0.03490642 0 0.2573316 0.951254 0 0.2718356 0.9514406 0 0.1829375 0.9548416 0 0.1947586 0.9538177 0 0.2073009 0.952814 0 0.2228659 0.9520104 0 0.2404771 0.9514597 0 0.1108281 0.5254233 0 0.1444382 0.6669756 0 0.166351 0.8180652 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Cylinder001-map1-array" count="66" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-Cylinder001-vertices">
+          <input semantic="POSITION" source="#geom-Cylinder001-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default_1" count="92">
+          <input semantic="VERTEX" source="#geom-Cylinder001-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-Cylinder001-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-Cylinder001-map1" offset="2" set="0"/>
+          <p>0 0 0 1 1 1 9 2 2 9 2 2 8 3 3 0 0 0 1 1 1 2 4 4 10 5 5 10 5 5 9 2 2 1 1 1 2 4 4 3 6 6 11 7 7 11 7 7 10 5 5 2 4 4 3 6 6 4 8 8 12 9 9 12 9 9 11 7 7 3 6 6 4 8 51 5 10 10 13 11 11 13 11 11 12 9 52 4 8 51 5 10 10 6 12 12 14 13 13 14 13 13 13 11 11 5 10 10 6 12 12 7 14 14 15 15 15 15 15 15 14 13 13 6 12 12 7 14 14 0 0 0 8 3 3 8 3 3 15 15 15 7 14 14 6 12 54 5 10 53 4 8 8 4 8 8 3 6 6 2 4 50 2 4 50 1 1 49 0 0 48 4 8 8 2 4 50 0 0 48 6 12 54 4 8 8 0 0 48 7 14 55 6 12 54 0 0 48 41 16 16 42 17 17 43 18 18 43 18 18 44 19 19 45 20 20 45 20 20 46 21 21 47 22 22 43 18 18 45 20 20 47 22 22 41 16 16 43 18 18 47 22 22 40 23 23 41 16 16 47 22 22 8 3 3 9 2 2 17 24 24 17 24 24 16 25 25 8 3 3 9 2 2 10 5 5 18 26 26 18 26 26 17 24 24 9 2 2 10 5 5 11 7 7 19 27 27 19 27 27 18 26 26 10 5 5 11 7 7 12 9 9 20 28 28 20 28 28 19 27 27 11 7 7 12 9 52 13 11 11 21 29 29 21 29 29 20 28 63 12 9 52 13 11 11 14 13 13 22 30 30 22 30 30 21 29 29 13 11 11 14 13 13 15 15 15 23 31 31 23 31 31 22 30 30 14 13 13 15 15 15 8 3 3 16 25 25 16 25 25 23 31 31 15 15 15 16 25 25 17 24 24 25 32 32 25 32 32 24 33 33 16 25 25 17 24 24 18 26 26 26 34 34 26 34 34 25 32 32 17 24 24 18 26 26 19 27 27 27 35 35 27 35 35 26 34 34 18 26 26 19 27 27 20 28 28 28 36 36 28 36 36 27 35 35 19 27 27 20 28 63 21 29 29 29 37 37 29 37 37 28 36 64 20 28 63 21 29 29 22 30 30 30 38 38 30 38 38 29 37 37 21 29 29 22 30 30 23 31 31 31 39 39 31 39 39 30 38 38 22 30 30 23 31 31 16 25 25 24 33 33 24 33 33 31 39 39 23 31 31 24 33 33 25 32 32 33 40 40 33 40 40 32 41 41 24 33 33 25 32 32 26 34 34 34 42 42 34 42 42 33 40 40 25 32 32 26 34 34 27 35 35 35 43 43 35 43 43 34 42 42 26 34 34 27 35 35 28 36 36 36 44 44 36 44 44 35 43 43 27 35 35 28 36 64 29 37 37 37 45 45 37 45 45 36 44 65 28 36 64 29 37 37 30 38 38 38 46 46 38 46 46 37 45 45 29 37 37 30 38 38 31 39 39 39 47 47 39 47 47 38 46 46 30 38 38 31 39 39 24 33 33 32 41 41 32 41 41 39 47 47 31 39 39 32 41 41 33 40 40 41 16 56 41 16 56 40 23 62 32 41 41 33 40 40 34 42 42 42 17 57 42 17 57 41 16 56 33 40 40 34 42 42 35 43 43 43 18 18 43 18 18 42 17 57 34 42 42 35 43 43 36 44 44 44 19 19 44 19 19 43 18 18 35 43 43 36 44 65 37 45 45 45 20 59 45 20 59 44 19 58 36 44 65 37 45 45 38 46 46 46 21 60 46 21 60 45 20 59 37 45 45 38 46 46 39 47 47 47 22 61 47 22 61 46 21 60 38 46 46 39 47 47 32 41 41 40 23 62 40 23 62 47 22 61 39 47 47</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="geom-Plane001" name="Plane001">
+      <mesh>
+        <source id="geom-Plane001-positions">
+          <float_array id="geom-Plane001-positions-array" count="12">-78.74016 -59.05512 0 78.74016 -59.05512 0 -78.74016 59.05512 0 78.74016 59.05512 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Plane001-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Plane001-normals">
+          <float_array id="geom-Plane001-normals-array" count="12">0 0 1 0 0 1 0 0 1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#geom-Plane001-normals-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Plane001-map1">
+          <float_array id="geom-Plane001-map1-array" count="12">0.4231458 0.4251048 0 0.9692152 0.4251048 0 0.4231458 0.9658231 0 0.9692152 0.9658231 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Plane001-map1-array" count="4" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-Plane001-vertices">
+          <input semantic="POSITION" source="#geom-Plane001-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default" count="2">
+          <input semantic="VERTEX" source="#geom-Plane001-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-Plane001-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-Plane001-map1" offset="2" set="0"/>
+          <p>2 0 2 0 1 0 3 2 3 1 3 1 3 2 3 0 1 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="geom-Plane002" name="Plane002">
+      <mesh>
+        <source id="geom-Plane002-positions">
+          <float_array id="geom-Plane002-positions-array" count="12">-78.74016 -59.05512 0 78.74016 -59.05512 0 -78.74016 59.05512 0 78.74016 59.05512 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Plane002-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Plane002-normals">
+          <float_array id="geom-Plane002-normals-array" count="12">0 0 1 0 0 1 0 0 1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#geom-Plane002-normals-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Plane002-map1">
+          <float_array id="geom-Plane002-map1-array" count="12">0.4231458 0.4251048 0 0.9692152 0.4251048 0 0.4231458 0.9658231 0 0.9692152 0.9658231 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Plane002-map1-array" count="4" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-Plane002-vertices">
+          <input semantic="POSITION" source="#geom-Plane002-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default" count="2">
+          <input semantic="VERTEX" source="#geom-Plane002-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-Plane002-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-Plane002-map1" offset="2" set="0"/>
+          <p>2 0 2 0 1 0 3 2 3 1 3 1 3 2 3 0 1 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
+      <technique_common>
+        <ambient>
+          <color>0 0 0</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="pohonx_png">
+      <init_from>./images/pohonx.png</init_from>
+    </image>
+  </library_images>
+  <library_visual_scenes>
+    <visual_scene id="MaxScene">
+      <node name="EnvironmentAmbientLight">
+        <instance_light url="#EnvironmentAmbientLight"/>
+      </node>
+      <node id="node-Cylinder001" name="Cylinder001">
+        <translate>0.4963199 -0.5164998 -1.16871e-7</translate>
+        <instance_geometry url="#geom-Cylinder001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default_1" target="#_1_-_Default-material">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="node-Plane001" name="Plane001">
+        <translate>-0.07320404 -0.01633966 136.3185</translate>
+        <rotate>-1 0 0 -90</rotate>
+        <instance_geometry url="#geom-Plane001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default" target="#_1_-_Default-material">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="node-Plane002" name="Plane002">
+        <translate>-6.18627e-11 -0.001421227 136.665</translate>
+        <rotate>-0.5773502 0.5773503 0.5773503 -120</rotate>
+        <instance_geometry url="#geom-Plane002">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default" target="#_1_-_Default-material">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#MaxScene"/>
+  </scene>
+</COLLADA>
