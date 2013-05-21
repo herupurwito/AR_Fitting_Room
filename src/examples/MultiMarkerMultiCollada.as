@@ -6,8 +6,11 @@ package examples {
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	
+	import examples.video.ColorTracker
+	
 	import flash.display.Graphics;
 	import flash.events.MouseEvent;
+	
 	
 	import away3d.containers.ObjectContainer3D;
 	import away3d.containers.Scene3D;
@@ -73,6 +76,7 @@ package examples {
 		private var ZoomOutButton:Loader; 
 		private var Panah:Loader; 
 		
+		private var _cam:ColorTracker;
 		
 		// texture file for baju
 		[Embed(source="../../resources/assets/jersey.png")]
@@ -94,17 +98,17 @@ package examples {
 		private var TopiDae:Class;
 		
 		public function MultiMarkerMultiCollada () {
-			var c:Camera = Camera.getCamera();
-			var v:Video = new Video(640,480);
+			//var c:Camera = Camera.getCamera();
+			//var v:Video = new Video(640,480);
 			
 			
-			v.scaleX = -1; 
-			v.x += v.width;
-			v.attachCamera(c);
+			//v.scaleX = -1; 
+			//v.x += v.width;
+			//v.attachCamera(c);
 			
-			mt = new CMotionTacker(v);
+			//mt = new CMotionTacker(v);
 			
-			v.addEventListener(Event.EXIT_FRAME, loop);
+			//v.addEventListener(Event.EXIT_FRAME, loop);
 			this.addEventListener(Event.ADDED_TO_STAGE, this.onAdded);
 			
 			
@@ -122,9 +126,11 @@ package examples {
 			Panah.scaleX = 0.3;
 			Panah.scaleY = 0.3;
 			
+			
+			
 		}
 		
-	
+	/*
 		
 		private function loop(e:Event):void {
 			
@@ -142,7 +148,7 @@ package examples {
 			} 
 		}
 		
-		
+		*/
 			
 		private function onAdded (evt:Event) :void {
 			this.removeEventListener(Event.ADDED_TO_STAGE, this.onAdded);
@@ -171,17 +177,34 @@ package examples {
 		}
 		
 		private function onFlarManagerInited (evt:Event) :void {
+			
 			this.flarManager.removeEventListener(Event.INIT, this.onFlarManagerInited);
 			
 			this.scene3D = new Scene3D();
 			this.camera3D = new FLARCamera_Away3D(this.flarManager, new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight));
 			this.view = new View3D({x:0.5*this.stage.stageWidth, y:0.5*this.stage.stageHeight, scene:this.scene3D, camera:this.camera3D});
-			this.addChild(this.view);
-			this.addChild(Panah);
 			
+			
+			
+			this._cam = new ColorTracker(640, 480, 0xffffff, 30);
+			//_cam.scaleX = -1; 
+			//_cam.x += _cam.width;
+			
+			
+            //this is how you can get the x and y coordinates of the pixel you are 
+            //tracking as a Point object
+            //trace(_cam.publicpos);
+			
+			///this._circle.addEventListener(Event.ENTER_FRAME, check);
+			
+			this.addChild(this._cam);
+			this.addChild(this.view);
+
+			//this.addChild(Panah);
 			
 			this.addChild(ZoomInButton);
 			this.addChild(ZoomOutButton);
+			
 			
 			
 			this.light = new DirectionalLight3D();

@@ -30,6 +30,7 @@ package {
 			// miscellaneous examples
 //			this.addChild(new FLARManagerExample_2D_Loader());
 //			this.addChild(new FLARManagerExample_Widescreen());
+			//this.addChild(new MultiMarkerMultiCollada());
 			this.addChild(new MultiMarkerMultiCollada());
 		}
 	}
