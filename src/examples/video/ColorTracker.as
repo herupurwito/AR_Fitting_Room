@@ -1,5 +1,6 @@
 ﻿package examples.video 
 {
+	import examples.posisiKursor;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
@@ -13,6 +14,7 @@
 	import flash.system.System;
 	import flash.utils.Timer;
 	import examples.loop.Loop
+	import examples.MultiMarkerMultiCollada;
 	
 	public class ColorTracker extends Sprite
 	{
@@ -98,7 +100,7 @@
 			_avgpos = _pos;
 			//_circle.x = _avgpos.x;
 			//_circle.y = _avgpos.y;
-			trace(_avgpos);
+			//trace(_avgpos);
 			return _avgpos;
 		}
 		
@@ -120,6 +122,7 @@
 			_circle.x += (_avgpos.x - _circle.x)/10;
 			_circle.y += (_avgpos.y - _circle.y)/10;
 			trackColor();
+			new posisiKursor(_circle.x,_circle.y);
 			_bmd.draw(_vid);
 		}
 		
@@ -128,13 +131,15 @@
 			_circle.graphics.beginFill(_trackedcolor, 1);
 			_circle.graphics.drawCircle(0, 0, 12);
 			_circle.graphics.endFill();
+			_circle.visible = false;
 			addChild(_circle);
+			
 		}
 		public function trackColor():Point {
 			
-			for (var i:Number = 0; i < 320; i++) {
-				for (var j:Number = 0; j < 240; j++) {
-					if (_bmd.getPixel(i, j) <= _trackedcolor+3200 && _bmd.getPixel(i,j)>=_trackedcolor-3200 ) {
+			for (var i:Number = 500; i < 640; i++) {
+				for (var j:Number = 0; j < 480; j++) {
+					if (_bmd.getPixel(i, j) <= _trackedcolor+6400 && _bmd.getPixel(i,j)>=_trackedcolor-6400 ) {
 						//_circle.x = i;
 						//_circle.y = j;
 						_pos.x = i;

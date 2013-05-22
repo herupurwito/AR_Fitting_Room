@@ -67,14 +67,12 @@ package examples {
 		private var ModelContainerBaju2:ObjectContainer3D;
 		private var ModelContainerTopi1:ObjectContainer3D;
 		
-		
-		
 		private var lebar:Number = 640;
 		private var tinggi:Number = 480;
 		
 		private var ZoomInButton:Loader; 
 		private var ZoomOutButton:Loader; 
-		private var Panah:Loader; 
+		public static var Panah:Loader; 
 		
 		private var _cam:ColorTracker;
 		
@@ -123,12 +121,12 @@ package examples {
 			Panah = new Loader();
 			
 			Panah.load(new URLRequest("../resources/button/arrow.png"));
-			Panah.scaleX = 0.3;
-			Panah.scaleY = 0.3;
+			Panah.scaleX = 0.2;
+			Panah.scaleY = 0.2;
 			
-			
-			
+			Panah.addEventListener(Event.ENTER_FRAME, check);
 		}
+		
 		
 	/*
 		
@@ -195,22 +193,17 @@ package examples {
             //tracking as a Point object
             //trace(_cam.publicpos);
 			
-			///this._circle.addEventListener(Event.ENTER_FRAME, check);
-			
 			this.addChild(this._cam);
 			this.addChild(this.view);
-
-			//this.addChild(Panah);
+			
+			this.addChild(Panah);
 			
 			this.addChild(ZoomInButton);
 			this.addChild(ZoomOutButton);
 			
-			
-			
 			this.light = new DirectionalLight3D();
 			this.light.direction = new Vector3D(500, -300, 200);
 			this.scene3D.addLight(light);
-			
 			
 			//--------------------------------------3D-Model baju 1----
 			var colladaBaju1:Collada = new Collada();
@@ -226,7 +219,6 @@ package examples {
 			this.ModelContainerBaju1.visible = false;
 			this.scene3D.addChild(this.ModelContainerBaju1);
 			
-			
 			//--------------------------------------3D-Model baju 2----
 			var colladaBaju2:Collada = new Collada();
 			var ModelBaju2:ObjectContainer3D = colladaBaju2.parseGeometry(BajuDae) as ObjectContainer3D;
@@ -239,7 +231,6 @@ package examples {
 			this.ModelContainerBaju2.addChild(ModelBaju2);
 			this.ModelContainerBaju2.visible = false;
 			this.scene3D.addChild(this.ModelContainerBaju2);
-			
 			
 			//--------------------------------------3D-Model topi 1----
 			var ColladaTopi1:Collada = new Collada();
