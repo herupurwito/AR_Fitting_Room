@@ -65,15 +65,16 @@
 			_cam.setMode(_width, _height, 30);
 			_vid = new Video(_width, _height);
 			
-			
+			//_vid.scaleX = -1; 
+			//_vid.x += _vid.width;
 			
 			_vid.attachCamera(_cam);
 			_vid.smoothing = true;
 			_bmd = new BitmapData(_width, _height);
 			_bmp = new Bitmap(_bmd);
 			
-			//_bmp.scaleX = -1; 
-			//_bmp.x += _bmp.width;
+			_bmp.scaleX = -1; 
+			_bmp.x += _bmp.width;
 			
 			
 			addChild(_bmp);
@@ -111,7 +112,7 @@
 		
 		private function getColorFromMousePos():void
 		{
-			_trackedcolor = _bmd.getPixel(stage.mouseX, stage.mouseY);
+			_trackedcolor = _bmd.getPixel(640-(stage.mouseX), stage.mouseY);
 			removeChild(_circle);
 			drawCircle();
 			trace ("posisi mouse "+mouseX +":"+mouseY);
@@ -124,6 +125,7 @@
 			trackColor();
 			new posisiKursor(_circle.x,_circle.y);
 			_bmd.draw(_vid);
+			
 		}
 		
 		private function drawCircle():void {
@@ -131,7 +133,7 @@
 			_circle.graphics.beginFill(_trackedcolor, 1);
 			_circle.graphics.drawCircle(0, 0, 12);
 			_circle.graphics.endFill();
-			_circle.visible = false;
+			//_circle.visible = false;
 			addChild(_circle);
 			
 		}
