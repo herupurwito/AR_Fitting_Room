@@ -5,10 +5,10 @@
 <flar_config>
 	<!-- source settings -->
 	<flarSourceSettings
-		sourceWidth="640"
-		sourceHeight="480"
-		displayWidth="640"
-		displayHeight="480"
+		sourceWidth="320"
+		sourceHeight="240"
+		displayWidth="320"
+		displayHeight="240"
 		framerate="30"
 		trackerToSourceRatio="0.5"
 		activityThreshold="16"/>

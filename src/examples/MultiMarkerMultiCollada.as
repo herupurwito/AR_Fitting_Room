@@ -1,5 +1,6 @@
 package examples {
 	import flash.display.Loader;
+	import flash.geom.Matrix;
 	import flash.media.Camera;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -26,7 +27,6 @@ package examples {
 	import flash.events.TimerEvent;
 	import flash.media.Video;
 	import flash.utils.Timer;
-	import examples.CMotionTacker;
 	
 	import com.transmote.flar.FLARManager;
 	import com.transmote.flar.camera.FLARCamera_Away3D;
@@ -47,7 +47,6 @@ package examples {
 	public class MultiMarkerMultiCollada extends Sprite {
 		private var flarManager:FLARManager;
 		
-		private var mt:CMotionTacker;
 		
 		
 		private var view:View3D;
@@ -67,8 +66,8 @@ package examples {
 		private var ModelContainerBaju2:ObjectContainer3D;
 		private var ModelContainerTopi1:ObjectContainer3D;
 		
-		private var lebar:Number = 640;
-		private var tinggi:Number = 480;
+		private var lebar:Number = 320;
+		private var tinggi:Number = 240;
 		
 		private var ZoomInButton:Loader; 
 		private var ZoomOutButton:Loader; 
@@ -96,73 +95,33 @@ package examples {
 		private var TopiDae:Class;
 		
 		public function MultiMarkerMultiCollada () {
-			//var c:Camera = Camera.getCamera();
-			//var v:Video = new Video(640,480);
-			
-			
-			//v.scaleX = -1; 
-			//v.x += v.width;
-			//v.attachCamera(c);
-			
-			//mt = new CMotionTacker(v);
-			
-			//v.addEventListener(Event.EXIT_FRAME, loop);
+		
 			this.addEventListener(Event.ADDED_TO_STAGE, this.onAdded);
-			
 			
 			ZoomInButton = new Loader();
 			ZoomInButton.load(new URLRequest("../resources/button/zoomin.jpg"));
-			ZoomInButton.x = 580; ZoomInButton.y = 240;
+			ZoomInButton.x = 270; ZoomInButton.y = 100;
 			
 			ZoomOutButton = new Loader();
 			ZoomOutButton.load(new URLRequest("../resources/button/zoomout.jpg"));
-			ZoomOutButton.x = 580; ZoomOutButton.y = 190;
+			ZoomOutButton.x = 270; ZoomOutButton.y = 140;
 			
 			Panah = new Loader();
 			
 			Panah.load(new URLRequest("../resources/button/arrow.png"));
-			Panah.scaleX = 0.2;
-			Panah.scaleY = 0.2;
+			Panah.scaleX = 0.1;
+			Panah.scaleY = 0.1;
 			
 			Panah.addEventListener(Event.ENTER_FRAME, check);
 		}
 		
 		
-	/*
-		
-		private function loop(e:Event):void {
-			
-			
-			
-			var p:Point = new Point();
-			
-			if (mt.track()) {
-				p.x = lebar-(mt.x);
-				p.y = mt.y;	
-				
-				Panah.x = p.x;
-				Panah.y = p.y;
-				Panah.addEventListener(Event.ENTER_FRAME, check);
-			} 
-		}
-		
-		*/
-			
 		private function onAdded (evt:Event) :void {
 			this.removeEventListener(Event.ADDED_TO_STAGE, this.onAdded);
 			
 			this.flarManager = new FLARManager("../resources/flar/flarConfig.xml", new FLARToolkitManager(), this.stage);
 			
-			// to switch tracking engines, pass a different IFLARTrackerManager into FLARManager.
-			// refer to this page for information on using different tracking engines:
-			// http://words.transmote.com/wp/inside-flarmanager-tracking-engines/
-			//			this.flarManager = new FLARManager("../resources/flar/flarConfig.xml", new FlareManager(), this.stage);
-			//			this.flarManager = new FLARManager("../resources/flar/flarConfig.xml", new FlareNFTManager(), this.stage);
-			
-			// add FLARManager.flarSource to the display list to display the video capture.
 			this.addChild(Sprite(this.flarManager.flarSource));
-			
-			
 			
 			// begin listening for FLARMarkerEvents.
 			this.flarManager.addEventListener(FLARMarkerEvent.MARKER_ADDED, this.onMarkerAdded);
@@ -182,24 +141,26 @@ package examples {
 			this.camera3D = new FLARCamera_Away3D(this.flarManager, new Rectangle(0, 0, this.stage.stageWidth, this.stage.stageHeight));
 			this.view = new View3D({x:0.5*this.stage.stageWidth, y:0.5*this.stage.stageHeight, scene:this.scene3D, camera:this.camera3D});
 			
+			this._cam = new ColorTracker(320, 240, 0xffffff, 10);
 			
-			
-			this._cam = new ColorTracker(640, 480, 0xffffff, 30);
-			//_cam.scaleX = -1; 
-			//_cam.x += _cam.width;
-			
-			
-            //this is how you can get the x and y coordinates of the pixel you are 
-            //tracking as a Point object
-            //trace(_cam.publicpos);
-			
+			//mirror
+			var lebar:int = _cam.width;
+			var ma:Matrix=new Matrix();
+			ma.a=-1;
+			ma.tx = lebar;
+			this._cam.transform.matrix = ma; 
+			_cam.x -= 12;
 			this.addChild(this._cam);
+			
+			
 			this.addChild(this.view);
 			
-			this.addChild(Panah);
+			
 			
 			this.addChild(ZoomInButton);
 			this.addChild(ZoomOutButton);
+			
+			this.addChild(Panah);
 			
 			this.light = new DirectionalLight3D();
 			this.light.direction = new Vector3D(500, -300, 200);
@@ -355,7 +316,7 @@ package examples {
 			ModelContainerTopi1.scale(angka);
 		}
 		
-		//aksi tombol zoomin dengan motion tracking
+		//aksi tombol zoomin dengan color tracking
 		private function iniTimer2 () :void {
 			timer.addEventListener(TimerEvent.TIMER, timerTicked2);
 			timer.start();
@@ -390,12 +351,12 @@ package examples {
 				ModelContainerBaju1.scale(angka);
 				ModelContainerBaju2.scale(angka);
 				ModelContainerTopi1.scale(angka);
-				ZoomInButton.scaleX = 1.2;
-				ZoomInButton.scaleY = 1.2;
-			} else {
-				timer.stop();
 				ZoomInButton.scaleX = 1;
 				ZoomInButton.scaleY = 1;
+			} else {
+				timer.stop();
+				ZoomInButton.scaleX = 0.5;
+				ZoomInButton.scaleY = 0.5;
 			}
 			
 			//over zoomout button
@@ -405,12 +366,12 @@ package examples {
 				ModelContainerBaju1.scale(angka);
 				ModelContainerBaju2.scale(angka);
 				ModelContainerTopi1.scale(angka);
-				ZoomOutButton.scaleX = 1.2;
-				ZoomOutButton.scaleY = 1.2;
-			} else {
-				timer2.stop();
 				ZoomOutButton.scaleX = 1;
 				ZoomOutButton.scaleY = 1;
+			} else {
+				timer2.stop();
+				ZoomOutButton.scaleX = 0.5;
+				ZoomOutButton.scaleY = 0.5;
 			}
 		}
 		

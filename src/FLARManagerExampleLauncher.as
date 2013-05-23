@@ -3,7 +3,7 @@ package {
 	
 	import flash.display.Sprite;
 
-	[SWF(width="640", height="480", frameRate="30", backgroundColor="#FFFFFF")]
+	[SWF(width="320", height="240", frameRate="30", backgroundColor="#FFFFFF")]
 	public class FLARManagerExampleLauncher extends Sprite {
 		
 		public function FLARManagerExampleLauncher () {

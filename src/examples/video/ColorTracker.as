@@ -14,7 +14,6 @@
 	import flash.system.System;
 	import flash.utils.Timer;
 	import examples.loop.Loop
-	import examples.MultiMarkerMultiCollada;
 	
 	public class ColorTracker extends Sprite
 	{
@@ -73,8 +72,8 @@
 			_bmd = new BitmapData(_width, _height);
 			_bmp = new Bitmap(_bmd);
 			
-			_bmp.scaleX = -1; 
-			_bmp.x += _bmp.width;
+			//_bmp.scaleX = -1; 
+			//_bmp.x += _bmp.width;
 			
 			
 			addChild(_bmp);
@@ -112,10 +111,9 @@
 		
 		private function getColorFromMousePos():void
 		{
-			_trackedcolor = _bmd.getPixel(640-(stage.mouseX), stage.mouseY);
+			_trackedcolor = _bmd.getPixel(_width-(stage.mouseX), stage.mouseY);
 			removeChild(_circle);
 			drawCircle();
-			trace ("posisi mouse "+mouseX +":"+mouseY);
 		}
 		
 		
@@ -133,15 +131,15 @@
 			_circle.graphics.beginFill(_trackedcolor, 1);
 			_circle.graphics.drawCircle(0, 0, 12);
 			_circle.graphics.endFill();
-			//_circle.visible = false;
+			_circle.visible = false;
 			addChild(_circle);
 			
 		}
 		public function trackColor():Point {
 			
-			for (var i:Number = 500; i < 640; i++) {
-				for (var j:Number = 0; j < 480; j++) {
-					if (_bmd.getPixel(i, j) <= _trackedcolor+6400 && _bmd.getPixel(i,j)>=_trackedcolor-6400 ) {
+			for (var i:Number = 0; i < _width; i++) {
+				for (var j:Number = 0; j < _height; j++) {
+					if (_bmd.getPixel(i, j) <= _trackedcolor+3200 && _bmd.getPixel(i,j)>=_trackedcolor-3200 ) {
 						//_circle.x = i;
 						//_circle.y = j;
 						_pos.x = i;
