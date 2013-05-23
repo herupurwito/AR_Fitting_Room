@@ -71,6 +71,8 @@ package examples {
 		
 		private var ZoomInButton:Loader; 
 		private var ZoomOutButton:Loader; 
+		private var NextButton:Loader; 
+		private var PreviousButton:Loader; 
 		public static var Panah:Loader; 
 		
 		private var _cam:ColorTracker;
@@ -104,10 +106,18 @@ package examples {
 			
 			ZoomOutButton = new Loader();
 			ZoomOutButton.load(new URLRequest("../resources/button/zoomout.jpg"));
-			ZoomOutButton.x = 270; ZoomOutButton.y = 140;
+			ZoomOutButton.x = 270; ZoomOutButton.y = 130;
+			
+			NextButton = new Loader();
+			NextButton.load(new URLRequest("../resources/button/next.png"));
+			NextButton.x = 270; NextButton.y = 70;
+			
+			
+			PreviousButton = new Loader();
+			PreviousButton.load(new URLRequest("../resources/button/previous.png"));
+			PreviousButton.x = 270; PreviousButton.y = 40;
 			
 			Panah = new Loader();
-			
 			Panah.load(new URLRequest("../resources/button/arrow.png"));
 			Panah.scaleX = 0.1;
 			Panah.scaleY = 0.1;
@@ -157,6 +167,8 @@ package examples {
 			
 			
 			
+			this.addChild(NextButton);
+			this.addChild(PreviousButton);
 			this.addChild(ZoomInButton);
 			this.addChild(ZoomOutButton);
 			
@@ -351,8 +363,8 @@ package examples {
 				ModelContainerBaju1.scale(angka);
 				ModelContainerBaju2.scale(angka);
 				ModelContainerTopi1.scale(angka);
-				ZoomInButton.scaleX = 1;
-				ZoomInButton.scaleY = 1;
+				ZoomInButton.scaleX = 0.7;
+				ZoomInButton.scaleY = 0.7;
 			} else {
 				timer.stop();
 				ZoomInButton.scaleX = 0.5;
@@ -366,12 +378,30 @@ package examples {
 				ModelContainerBaju1.scale(angka);
 				ModelContainerBaju2.scale(angka);
 				ModelContainerTopi1.scale(angka);
-				ZoomOutButton.scaleX = 1;
-				ZoomOutButton.scaleY = 1;
+				ZoomOutButton.scaleX = 0.7;
+				ZoomOutButton.scaleY = 0.7;
 			} else {
 				timer2.stop();
 				ZoomOutButton.scaleX = 0.5;
 				ZoomOutButton.scaleY = 0.5;
+			}
+			
+			//over next button
+			if (e.target.hitTestObject(NextButton)) {
+				NextButton.scaleX = 0.4;
+				NextButton.scaleY = 0.4;
+			} else {
+				NextButton.scaleX = 0.24;
+				NextButton.scaleY = 0.24;
+			}
+			
+			//over previous button
+			if (e.target.hitTestObject(PreviousButton)) {
+				PreviousButton.scaleX = 0.4;
+				PreviousButton.scaleY = 0.4;
+			} else {
+				PreviousButton.scaleX = 0.24;
+				PreviousButton.scaleY = 0.24;
 			}
 		}
 		

@@ -13,7 +13,7 @@ package examples
 		{
 			letakkursorX = Xposisi;
 			letakkursorY = Yposisi;
-			MultiMarkerMultiCollada.Panah.x = 320-letakkursorX;
+			MultiMarkerMultiCollada.Panah.x = letakkursorX;
 			MultiMarkerMultiCollada.Panah.y = letakkursorY;
 		}
 		

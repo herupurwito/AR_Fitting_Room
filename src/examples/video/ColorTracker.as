@@ -121,7 +121,7 @@
 			_circle.x += (_avgpos.x - _circle.x)/10;
 			_circle.y += (_avgpos.y - _circle.y)/10;
 			trackColor();
-			new posisiKursor(_circle.x,_circle.y);
+			new posisiKursor(_width-_circle.x,_circle.y);
 			_bmd.draw(_vid);
 			
 		}
