@@ -55,10 +55,6 @@ package examples {
 		private var light:DirectionalLight3D;
 		
 		private var activeMarkerBaju1:FLARMarker;
-		private var activeMarkerBaju2:FLARMarker;
-		private var activeMarkerBaju3:FLARMarker;
-		private var activeMarkerZoomIn:FLARMarker;
-		private var activeMarkerZoomOut:FLARMarker;
 		
 		private var modelLoader:Loader3D;
 		
@@ -76,7 +72,9 @@ package examples {
 		public static var Panah:Loader; 
 		
 		private var _cam:ColorTracker;
-		
+		private var noUrut:Number = 0;
+		private var noMarker:Number = 0;
+		private var jumlahModel:Number = 2;
 		// texture file for baju
 		[Embed(source="../../resources/assets/jersey.png")]
 		private var TextureBaju1:Class;
@@ -119,8 +117,8 @@ package examples {
 			
 			Panah = new Loader();
 			Panah.load(new URLRequest("../resources/button/arrow.png"));
-			Panah.scaleX = 0.1;
-			Panah.scaleY = 0.1;
+			Panah.scaleX = 0.08;
+			Panah.scaleY = 0.08;
 			
 			Panah.addEventListener(Event.ENTER_FRAME, check);
 		}
@@ -225,75 +223,20 @@ package examples {
 		
 		private function onMarkerAdded (evt:FLARMarkerEvent) :void {
 			trace("[" + evt.marker.patternId + "] added");
-			
-			if (evt.marker.patternId == 0) {
-				markerAdded(0);
-				this.activeMarkerBaju1 = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 1) {
-				markerAdded(1);
-				this.activeMarkerBaju2 = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 2) {
-				this.activeMarkerZoomIn = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 3) {
-				this.activeMarkerZoomOut = evt.marker;
-			} 
-			
-			if (evt.marker.patternId == 4) {
-				this.activeMarkerBaju3 = evt.marker;
-			}
+			markerAdded(noMarker);
+			this.activeMarkerBaju1 = evt.marker;
 		}
 		
 		private function onMarkerUpdated (evt:FLARMarkerEvent) :void {
 			trace("[" + evt.marker.patternId + "] updated");
-			
-			if (evt.marker.patternId == 0) {
-				markerAdded(0);
-				this.activeMarkerBaju1 = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 1) {
-				markerAdded(1);
-				this.activeMarkerBaju2 = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 2) {
-				this.activeMarkerZoomIn = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 3) {
-				this.activeMarkerZoomOut = evt.marker;
-			}
-			
-			if (evt.marker.patternId == 4) {
-				markerAdded(4);
-				this.activeMarkerBaju3 = evt.marker;
-			}
+			markerAdded(noMarker);
+			this.activeMarkerBaju1 = evt.marker;
 		}
 		
 		private function onMarkerRemoved (evt:FLARMarkerEvent) :void {
 			trace("[" + evt.marker.patternId + "] removed");
-			
-			if (evt.marker.patternId == 0) {
-				markerRemoved(0);
-			}
-			
-			if (evt.marker.patternId == 1) {
-				markerRemoved(1);
-			}
-			if (evt.marker.patternId == 4) {
-				markerRemoved(4);
-			}
+			markerRemoved(noMarker);
 			this.activeMarkerBaju1 = null;
-			this.activeMarkerBaju2 = null;
-			this.activeMarkerBaju3 = null;
-			this.activeMarkerZoomIn = null;
-			this.activeMarkerZoomOut = null;
 		}
 		
 		public const delayInSeconds:Number = 0.5;
@@ -301,8 +244,10 @@ package examples {
 		public var angka:Number = 1;
 		public var timer:Timer = new Timer(delayInSeconds * 1000, repetitions);
 		public var timer2:Timer = new Timer(delayInSeconds * 1000, repetitions);
+		public var timer3:Timer = new Timer(delayInSeconds * 1000, 2);
+		public var timer4:Timer = new Timer(delayInSeconds * 1000, 2);
 		
-		//aksi tombol zoom dengan marker
+		//aksi tombol zoomin dengan color tracking
 		private function iniTimer () :void {
 			timer.addEventListener(TimerEvent.TIMER, timerTicked);
 			timer.start();
@@ -311,54 +256,44 @@ package examples {
 			ModelContainerTopi1.scale(angka);
 		}
 		
-		
-		
 		private function timerTicked(e:TimerEvent):void	{
-			/*
-			if (this.activeMarkerZoomIn==null) {
-				angka += 0.1;
-			}
-			
-			if (this.activeMarkerZoomOut==null) {
-				angka -= 0.1;
-			}*/
-			
-			ModelContainerBaju1.scale(angka);
-			ModelContainerBaju2.scale(angka);
-			ModelContainerTopi1.scale(angka);
-		}
-		
-		//aksi tombol zoomin dengan color tracking
-		private function iniTimer2 () :void {
-			timer.addEventListener(TimerEvent.TIMER, timerTicked2);
-			timer.start();
-			ModelContainerBaju1.scale(angka);
-			ModelContainerBaju2.scale(angka);
-			ModelContainerTopi1.scale(angka);
-		}
-		
-		private function timerTicked2(e:TimerEvent):void	{
 			angka += 0.1;
 			ModelContainerBaju1.scale(angka);
 			ModelContainerBaju2.scale(angka);
 			ModelContainerTopi1.scale(angka);
 		}
 		
-		private function timerTicked3(e:TimerEvent):void	{
+		private function timerTicked2(e:TimerEvent):void	{
 			angka -= 0.1;
 			ModelContainerBaju1.scale(angka);
 			ModelContainerBaju2.scale(angka);
 			ModelContainerTopi1.scale(angka);
 		}
 		
+		private function timerTicked3(e:TimerEvent):void	{
+			noUrut += 1;
+			if (noUrut == jumlahModel) {
+				noMarker = noUrut - 1;
+			} else {
+				noMarker = noUrut;
+			}
+		}
 		
+		private function timerTicked4(e:TimerEvent):void	{
+			noUrut -= 1;
+			if (noUrut==-1) {
+				noMarker = 0;
+			} else {
+				noMarker = noUrut;
+			}
+		}
 		
 		//event ketika tombol di sentuh
 		private function check(e:Event):void {
 			
 			//over zoomin button
 			if (e.target.hitTestObject(ZoomInButton)) {
-				timer.addEventListener(TimerEvent.TIMER, timerTicked2);
+				timer.addEventListener(TimerEvent.TIMER, timerTicked);
 				timer.start();
 				ModelContainerBaju1.scale(angka);
 				ModelContainerBaju2.scale(angka);
@@ -373,7 +308,7 @@ package examples {
 			
 			//over zoomout button
 			if (e.target.hitTestObject(ZoomOutButton)) {
-				timer2.addEventListener(TimerEvent.TIMER, timerTicked3);
+				timer2.addEventListener(TimerEvent.TIMER, timerTicked2);
 				timer2.start();
 				ModelContainerBaju1.scale(angka);
 				ModelContainerBaju2.scale(angka);
@@ -388,37 +323,53 @@ package examples {
 			
 			//over next button
 			if (e.target.hitTestObject(NextButton)) {
+				if (noUrut>1) {
+					timer3.stop();
+				} else {
+					timer3.addEventListener(TimerEvent.TIMER, timerTicked3);
+					timer3.start();
+				}
 				NextButton.scaleX = 0.4;
 				NextButton.scaleY = 0.4;
+				
 			} else {
+				timer3.stop();
 				NextButton.scaleX = 0.24;
 				NextButton.scaleY = 0.24;
 			}
 			
 			//over previous button
 			if (e.target.hitTestObject(PreviousButton)) {
+				if (noUrut<0) {
+					timer4.stop();
+				} else {
+					timer4.addEventListener(TimerEvent.TIMER, timerTicked4);
+					timer4.start();
+				}
 				PreviousButton.scaleX = 0.4;
 				PreviousButton.scaleY = 0.4;
 			} else {
+				timer4.stop();
 				PreviousButton.scaleX = 0.24;
 				PreviousButton.scaleY = 0.24;
 			}
 		}
 		
+		private function pilihBaju(urutan:Number) {
+			//markerAdded(urutan);
+		}
+		
 		private function onEnterFrame (evt:Event) :void {
 			// apply the FLARToolkit transformation matrix to the Cube.
 			if (this.activeMarkerBaju1) {
-				this.ModelContainerBaju1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
-				
-			}
-			if (this.activeMarkerBaju2) {
-				this.ModelContainerBaju2.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju2.transformMatrix);
-				this.ModelContainerTopi1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju2.transformMatrix);
+				if (noMarker == 0) {
+					this.ModelContainerBaju1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
+				} else if (noMarker == 1){
+					this.ModelContainerBaju2.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
+					this.ModelContainerTopi1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
+				}
 			}
 			
-			if (this.activeMarkerBaju3) {
-				
-			}
 			iniTimer(); 
 			this.view.render();
 		}
