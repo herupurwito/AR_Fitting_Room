@@ -49,10 +49,6 @@
 			<!-- @resolution specifies the resolution at which the patterns were generated. -->
 			<patterns resolution="8" patternToBorderRatioX="50" patternToBorderRatioY="50" minConfidence="0.5" >
 				<pattern path="../resources/flarToolkit/patterns/pat8/patt001.pat" />
-				<pattern path="../resources/flarToolkit/patterns/pat8/patt002.pat" />
-				<pattern path="../resources/flarToolkit/patterns/pat8/patt003.pat" />
-				<pattern path="../resources/flarToolkit/patterns/pat8/patt004.pat" />
-				<pattern path="../resources/flarToolkit/patterns/pat8/patt005.pat" />
 			</patterns>
 			
 		</flarToolkitSettings>

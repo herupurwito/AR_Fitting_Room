@@ -54,7 +54,7 @@ package examples {
 		private var scene3D:Scene3D;
 		private var light:DirectionalLight3D;
 		
-		private var activeMarkerBaju1:FLARMarker;
+		private var markerBaju:FLARMarker;
 		
 		private var modelLoader:Loader3D;
 		
@@ -167,10 +167,7 @@ package examples {
 			_cam.x -= 12;
 			this.addChild(this._cam);
 			
-			
 			this.addChild(this.view);
-			
-			
 			
 			this.addChild(bgButton);
 			this.addChild(NextButton);
@@ -232,19 +229,19 @@ package examples {
 		private function onMarkerAdded (evt:FLARMarkerEvent) :void {
 			trace("[" + evt.marker.patternId + "] added");
 			markerAdded(noMarker);
-			this.activeMarkerBaju1 = evt.marker;
+			this.markerBaju = evt.marker;
 		}
 		
 		private function onMarkerUpdated (evt:FLARMarkerEvent) :void {
 			trace("[" + evt.marker.patternId + "] updated");
 			markerAdded(noMarker);
-			this.activeMarkerBaju1 = evt.marker;
+			this.markerBaju = evt.marker;
 		}
 		
 		private function onMarkerRemoved (evt:FLARMarkerEvent) :void {
 			trace("[" + evt.marker.patternId + "] removed");
 			markerRemoved(noMarker);
-			this.activeMarkerBaju1 = null;
+			this.markerBaju = null;
 		}
 		
 		public const delayInSeconds:Number = 0.5;
@@ -252,8 +249,8 @@ package examples {
 		public var angka:Number = 1;
 		public var timer:Timer = new Timer(delayInSeconds * 1000, repetitions);
 		public var timer2:Timer = new Timer(delayInSeconds * 1000, repetitions);
-		public var timer3:Timer = new Timer(delayInSeconds * 900, 2);
-		public var timer4:Timer = new Timer(delayInSeconds * 900, 2);
+		public var timer3:Timer = new Timer(0.1 * 1000, 2);
+		public var timer4:Timer = new Timer(0.1 * 1000, 2);
 		
 		//aksi tombol zoomin dengan color tracking
 		private function iniTimer () :void {
@@ -364,12 +361,12 @@ package examples {
 		}
 		
 		private function onEnterFrame (evt:Event) :void {
-			if (this.activeMarkerBaju1) {
+			if (this.markerBaju) {
 				if (noMarker == 0) {
-					this.ModelContainerBaju1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
+					this.ModelContainerBaju1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.markerBaju.transformMatrix);
 				} else if (noMarker == 1){
-					this.ModelContainerBaju2.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
-					this.ModelContainerTopi1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
+					this.ModelContainerBaju2.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.markerBaju.transformMatrix);
+					this.ModelContainerTopi1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.markerBaju.transformMatrix);
 				}
 			}
 			
