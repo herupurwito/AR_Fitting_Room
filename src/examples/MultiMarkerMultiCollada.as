@@ -69,6 +69,7 @@ package examples {
 		private var ZoomOutButton:Loader; 
 		private var NextButton:Loader; 
 		private var PreviousButton:Loader; 
+		private var bgButton:Loader; 
 		public static var Panah:Loader; 
 		
 		private var _cam:ColorTracker;
@@ -100,20 +101,26 @@ package examples {
 			
 			ZoomInButton = new Loader();
 			ZoomInButton.load(new URLRequest("../resources/button/zoomin.jpg"));
-			ZoomInButton.x = 270; ZoomInButton.y = 100;
+			ZoomInButton.x = 280; ZoomInButton.y = 120;
 			
 			ZoomOutButton = new Loader();
 			ZoomOutButton.load(new URLRequest("../resources/button/zoomout.jpg"));
-			ZoomOutButton.x = 270; ZoomOutButton.y = 130;
+			ZoomOutButton.x = 280; ZoomOutButton.y = 150;
 			
 			NextButton = new Loader();
 			NextButton.load(new URLRequest("../resources/button/next.png"));
-			NextButton.x = 270; NextButton.y = 70;
+			NextButton.x = 280; NextButton.y = 90;
 			
 			
 			PreviousButton = new Loader();
 			PreviousButton.load(new URLRequest("../resources/button/previous.png"));
-			PreviousButton.x = 270; PreviousButton.y = 40;
+			PreviousButton.x = 280; PreviousButton.y = 60;
+			
+			bgButton = new Loader();
+			bgButton.load(new URLRequest("../resources/button/bg.png"));
+			bgButton.x = 270; bgButton.y = 50;
+			bgButton.scaleX = 2.7;
+			bgButton.scaleY = 8;
 			
 			Panah = new Loader();
 			Panah.load(new URLRequest("../resources/button/arrow.png"));
@@ -165,6 +172,7 @@ package examples {
 			
 			
 			
+			this.addChild(bgButton);
 			this.addChild(NextButton);
 			this.addChild(PreviousButton);
 			this.addChild(ZoomInButton);
@@ -244,8 +252,8 @@ package examples {
 		public var angka:Number = 1;
 		public var timer:Timer = new Timer(delayInSeconds * 1000, repetitions);
 		public var timer2:Timer = new Timer(delayInSeconds * 1000, repetitions);
-		public var timer3:Timer = new Timer(delayInSeconds * 1000, 2);
-		public var timer4:Timer = new Timer(delayInSeconds * 1000, 2);
+		public var timer3:Timer = new Timer(delayInSeconds * 900, 2);
+		public var timer4:Timer = new Timer(delayInSeconds * 900, 2);
 		
 		//aksi tombol zoomin dengan color tracking
 		private function iniTimer () :void {
@@ -355,12 +363,7 @@ package examples {
 			}
 		}
 		
-		private function pilihBaju(urutan:Number) {
-			//markerAdded(urutan);
-		}
-		
 		private function onEnterFrame (evt:Event) :void {
-			// apply the FLARToolkit transformation matrix to the Cube.
 			if (this.activeMarkerBaju1) {
 				if (noMarker == 0) {
 					this.ModelContainerBaju1.transform = AwayGeomUtils.convertMatrixToAwayMatrix(this.activeMarkerBaju1.transformMatrix);
